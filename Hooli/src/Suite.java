@@ -20,6 +20,7 @@ public class Suite {
 	private JButton sort;
 	private JButton login;
 	private JButton search;
+	private JScrollPane listScroll;
 
 	public static void main(String[] args) {
 		new Suite();
@@ -32,6 +33,7 @@ public class Suite {
 		topPanel();
 		appList();
 		frame.add(panel, BorderLayout.NORTH);
+		frame.add(listScroll, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
@@ -87,11 +89,7 @@ public class Suite {
 		listView.setVisibleRowCount(1);
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		JScrollPane listScroll = new JScrollPane(listView);
-		JPanel listPanel = new JPanel();
-
-		frame.add(listScroll, BorderLayout.CENTER);
-		
+		listScroll = new JScrollPane(listView);	
 	}
 	
 
