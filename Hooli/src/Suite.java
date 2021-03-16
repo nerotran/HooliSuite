@@ -4,8 +4,11 @@ import java.awt.Container;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
 public class Suite {
@@ -27,7 +30,8 @@ public class Suite {
 		makeFrame();
 		makePanel();
 		topPanel();
-		frame.add(panel);
+		appList();
+		frame.add(panel, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
@@ -35,6 +39,7 @@ public class Suite {
 	
 	public void makeFrame() {
 		frame = new JFrame("Hooli Suite");
+		frame.setLayout(new BorderLayout());
 		frame.setBounds(50, 50, 800, 600);
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(true);
@@ -68,6 +73,25 @@ public class Suite {
 		topPanel.add(login);
 
 		panel.add(topPanel, BorderLayout.NORTH);
+	}
+	
+	public void appList() {
+		Application h1 = new Application("Suite1", "Hooli");
+		Application h2 = new Application("Suite2", "Hooli");
+		Application h3 = new Application("Suite3", "Hooli");
+		Application h4 = new Application("Suite4", "Hooli");
+		
+		Application[] list = new Application[] {h1, h2, h3, h4};
+		
+		JList listView = new JList(list);
+		listView.setVisibleRowCount(1);
+		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JScrollPane listScroll = new JScrollPane(listView);
+		JPanel listPanel = new JPanel();
+
+		frame.add(listScroll, BorderLayout.CENTER);
+		
 	}
 	
 
