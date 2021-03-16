@@ -1,3 +1,4 @@
+import java.lang.management.PlatformLoggingMXBean;
 import java.time.LocalDateTime;
 
 public class Application {
@@ -44,11 +45,26 @@ public class Application {
 	public String toString() {
 		String result = "Name: " + name;
 		result += "\nPublisher: " + publisher;
-		result += "\nPlatform: " + platform;
-		result += "\nDescription: " + description;
+		
+		result += "\nPlatform: ";
+		if (platform != null)
+			result += platform;
+		
+		result += "\nDescription: ";
+		if (description != null)
+			result += description;
+		
+		
 		result += "\nPrice: $" + price;
-		result += "\nLink: " + link;
-		result += "\nReleased: " + date.toLocalDate();
+		
+		result += "\nLink: ";
+		if (link != null)
+			result += link;
+		
+		result += "\nReleased: ";
+		if (date != null)
+			result += date.toLocalDate();
+		
 		return result;
 	}
 	
