@@ -44,24 +44,24 @@ public class Application {
 	@Override
 	public String toString() {
 		String result = "Name: " + name;
-		result += "\nPublisher: " + publisher;
+		result += " Publisher: " + publisher;
 		
-		result += "\nPlatform: ";
+		result += " Platform: ";
 		if (platform != null)
 			result += platform;
 		
-		result += "\nDescription: ";
+		result += " Description: ";
 		if (description != null)
 			result += description;
 		
 		
-		result += "\nPrice: $" + price;
+		result += " Price: $" + price;
 		
-		result += "\nLink: ";
+		result += " Link: ";
 		if (link != null)
 			result += link;
 		
-		result += "\nReleased: ";
+		result += " Released: ";
 		if (date != null)
 			result += date.toLocalDate();
 		
