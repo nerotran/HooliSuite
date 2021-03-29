@@ -11,7 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
-public class Suite {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Suite implements ActionListener {
 	
 	private JFrame frame;
 	private JPanel panel;
@@ -90,6 +93,12 @@ public class Suite {
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		listScroll = new JScrollPane(listView);	
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
