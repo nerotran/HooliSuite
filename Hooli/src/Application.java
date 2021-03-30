@@ -11,19 +11,19 @@ public class Application {
 	private LocalDateTime date;
 	
 	public Application(String name, String publisher) {
-		this(name, publisher, null, "", 0, null, null);
+		this(name, publisher, "", "", 0, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform) {
-		this(name, publisher, platform, "", 0, null, null);
+		this(name, publisher, platform, "", 0, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description) {
-		this(name, publisher, platform, description, 0, null, null);
+		this(name, publisher, platform, description, 0, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price) {
-		this(name, publisher, platform, description, price, null, null);
+		this(name, publisher, platform, description, price, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link) {
