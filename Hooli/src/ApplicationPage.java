@@ -8,6 +8,8 @@ public class ApplicationPage extends JFrame{
 		this.app = app;
 		this.setBounds(50, 50, 800, 600);
 		this.setResizable(true);
+		this.setAlwaysOnTop(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
