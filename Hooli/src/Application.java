@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Application {
@@ -115,8 +116,11 @@ public class Application {
 		this.link = link;
 	}
 	
-	public LocalDateTime getDate() {
-		return date;
+	public String getDate() {
+		if (date == null) {
+			return "";
+		}
+		return date.toLocalDate().toString();
 	}
 	
 	public void setDate(LocalDateTime date) {
