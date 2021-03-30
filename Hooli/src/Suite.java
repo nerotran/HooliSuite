@@ -13,8 +13,10 @@ import javax.swing.SpringLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Suite implements ActionListener {
+public class Suite implements ActionListener,MouseListener {
 	
 	private JFrame frame;
 	private JPanel panel;
@@ -24,6 +26,7 @@ public class Suite implements ActionListener {
 	private JButton login;
 	private JButton search;
 	private JScrollPane listScroll;
+	JList listView;
 
 	public static void main(String[] args) {
 		new Suite();
@@ -31,6 +34,7 @@ public class Suite implements ActionListener {
 	}
 	
 	public Suite() {
+		super();
 		makeFrame();
 		makePanel();
 		topPanel();
@@ -46,7 +50,6 @@ public class Suite implements ActionListener {
 		frame = new JFrame("Hooli Suite");
 		frame.setLayout(new BorderLayout());
 		frame.setBounds(50, 50, 800, 600);
-		frame.setAlwaysOnTop(true);
 		frame.setResizable(true);
 	}
 	
@@ -88,7 +91,8 @@ public class Suite implements ActionListener {
 		
 		Application[] list = new Application[] {h1, h2, h3, h4};
 		
-		JList listView = new JList(list);
+		listView = new JList(list);
+		listView.addMouseListener(this);
 		listView.setVisibleRowCount(1);
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -97,6 +101,42 @@ public class Suite implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getClickCount() == 2) {
+			Application selectedItem = (Application) listView.getSelectedValue();
+		    ApplicationPage appPage = new ApplicationPage(selectedItem);
+		    appPage.setVisible(true);
+		    appPage.setAlwaysOnTop(true);
+		}
+       
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
