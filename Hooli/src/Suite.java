@@ -26,7 +26,7 @@ public class Suite implements ActionListener,MouseListener {
 	private JButton login;
 	private JButton search;
 	private JScrollPane listScroll;
-	JList listView;
+	JList<Application> listView;
 
 	public static void main(String[] args) {
 		new Suite();
@@ -91,7 +91,7 @@ public class Suite implements ActionListener,MouseListener {
 		
 		Application[] list = new Application[] {h1, h2, h3, h4};
 		
-		listView = new JList(list);
+		listView = new JList<Application>(list);
 		listView.addMouseListener(this);
 		listView.setCellRenderer(new ApplicationCell());
 		listView.setVisibleRowCount(1);
