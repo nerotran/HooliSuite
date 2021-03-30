@@ -112,7 +112,7 @@ public class Suite implements ActionListener,MouseListener {
 			Application selectedItem = (Application) listView.getSelectedValue();
 		    ApplicationPage appPage = new ApplicationPage(selectedItem);
 		    appPage.setVisible(true);
-		    appPage.setAlwaysOnTop(true);
+		    
 		}
        
 	}
