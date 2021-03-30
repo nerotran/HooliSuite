@@ -93,6 +93,7 @@ public class Suite implements ActionListener,MouseListener {
 		
 		listView = new JList(list);
 		listView.addMouseListener(this);
+		listView.setCellRenderer(new ApplicationCell());
 		listView.setVisibleRowCount(1);
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
