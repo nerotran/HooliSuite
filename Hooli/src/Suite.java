@@ -84,12 +84,7 @@ public class Suite implements ActionListener,MouseListener {
 	}
 	
 	public void appList() {
-		Application h1 = new Application("Suite1", "Hooli");
-		Application h2 = new Application("Suite2", "Hooli");
-		Application h3 = new Application("Suite3", "Hooli");
-		Application h4 = new Application("Suite4", "Hooli");
-		
-		Application[] list = new Application[] {h1, h2, h3, h4};
+		Application[] list = readFile();
 		
 		listView = new JList<Application>(list);
 		listView.addMouseListener(this);
@@ -98,6 +93,16 @@ public class Suite implements ActionListener,MouseListener {
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		listScroll = new JScrollPane(listView);	
+	}
+	
+	public Application[] readFile() {
+		Application h1 = new Application("Suite1", "Hooli");
+		Application h2 = new Application("Suite2", "Hooli");
+		Application h3 = new Application("Suite3", "Hooli");
+		Application h4 = new Application("Suite4", "Hooli");
+		
+		Application[] list = new Application[] {h1, h2, h3, h4};
+		return list;
 	}
 
 	@Override
