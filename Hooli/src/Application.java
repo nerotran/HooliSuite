@@ -1,4 +1,3 @@
-import java.lang.management.PlatformLoggingMXBean;
 import java.time.LocalDateTime;
 
 public class Application {
