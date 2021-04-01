@@ -1,2 +1,4 @@
 Name,Publisher,Platform,Description,Price,Link,Date
-Jane,Doe,PC,Text,100,google.com,2001
+Jane,Doe,PC,Text,100,https://www.google.com/,2001
+Test1,test,test,test,10,test,test
+Test2,test,test,test,10,test,test
