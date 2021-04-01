@@ -20,7 +20,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Suite implements ActionListener,MouseListener,ItemListener {
@@ -109,6 +109,10 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		Application h4 = new Application("Suite4", "Hooli");
 		
 		Application[] list = new Application[] {h1, h2, h3, h4};
+		
+		// Attempting to implement FileReader Class
+		//ArrayList<Application> arrlist = FileReader.readAppFile("ApplicationData.csv");
+		//Application[] list = (Application[]) arrlist.toArray();
 		
 		listView = new JList<Application>(list);
 		listView.addMouseListener(this);
