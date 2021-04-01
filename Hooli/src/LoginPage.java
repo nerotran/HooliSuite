@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,8 +25,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	
 	public void buildPage() {
 		panel = new JPanel();
-		GroupLayout layout = new GroupLayout(panel);
-		panel.setLayout(layout);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		userName = new JLabel("Username: ");
 		password = new JLabel("Password: ");
