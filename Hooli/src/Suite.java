@@ -93,6 +93,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 
 		
 		login = new JButton("Login");
+		login.addActionListener(this);
 		topPanel.add(login);
 
 		panel.add(topPanel, BorderLayout.NORTH);
@@ -118,7 +119,9 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		LoginPage login = new LoginPage();
+		login.buildPage();
+		login.setVisible(true);
 	}
 
 	@Override
