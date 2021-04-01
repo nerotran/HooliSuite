@@ -1,10 +1,16 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -13,18 +19,20 @@ import javax.swing.SpringLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import java.util.Scanner;
 
-public class Suite implements ActionListener,MouseListener {
+public class Suite implements ActionListener,MouseListener,ItemListener {
 	
 	private JFrame frame;
 	private JPanel panel;
 	private JTextField searchBar;
 	private JButton filter;
-	private JButton sort;
+	private JComboBox sort;
 	private JButton login;
 	private JButton search;
 	private JScrollPane listScroll;
@@ -68,14 +76,19 @@ public class Suite implements ActionListener,MouseListener {
 		searchBar = new JTextField(20);
 		topPanel.add(searchBar);
 		
-		
 	    search = new JButton("Search");
 	    topPanel.add(search);
 
 		filter = new JButton("Filter");
 		topPanel.add(filter);
 
-		sort = new JButton("Sort");
+		sort = new JComboBox();
+		sort.addItem("[Sort By: ] ");
+		sort.addItem("Alphabet");
+		sort.addItem("Publisher");
+		sort.addItem("Date Added");
+		sort.addItem("Price");
+		sort.addItemListener(this);
 		topPanel.add(sort);
 
 		
@@ -103,7 +116,7 @@ public class Suite implements ActionListener,MouseListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -141,6 +154,26 @@ public class Suite implements ActionListener,MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		// TODO Auto-generated method stub
+		String getItem = (String)sort.getSelectedItem();
+		
+		if (getItem.equals("Alphabet")) {
+			JOptionPane.showMessageDialog(frame, "Alphabet sort would be here");
+		}
+		if (getItem.equals("Publisher")) {
+			JOptionPane.showMessageDialog(frame, "Publisher sort would be here");
+		}
+		if (getItem.equals("Date Added")) {
+			JOptionPane.showMessageDialog(frame, "Date Added sort would be here");
+		}
+		if (getItem.equals("Price")) {
+			JOptionPane.showMessageDialog(frame, "Price sort would be here");
+		}
 		
 	}
 	
