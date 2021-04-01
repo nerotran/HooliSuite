@@ -7,9 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -31,7 +28,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	private JFrame frame;
 	private JPanel panel;
 	private JTextField searchBar;
-	private JButton filter;
+	private JComboBox filter;
 	private JComboBox sort;
 	private JButton login;
 	private JButton search;
@@ -79,8 +76,14 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	    search = new JButton("Search");
 	    topPanel.add(search);
 
-		filter = new JButton("Filter");
+		filter = new JComboBox();
+		filter.addItem("[Filter By: ] ");
+		filter.addItem("Organization");
+		filter.addItem("Platform");
+		filter.addItem("Genre");
+		filter.addItemListener(this);
 		topPanel.add(filter);
+		
 
 		sort = new JComboBox();
 		sort.addItem("[Sort By: ] ");
@@ -164,7 +167,9 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	public void itemStateChanged(ItemEvent arg0) {
 		// TODO Auto-generated method stub
 		String getItem = (String)sort.getSelectedItem();
+		String getItem2 = (String)filter.getSelectedItem();
 		
+		// ItemListener for sort
 		if (getItem.equals("Alphabet")) {
 			JOptionPane.showMessageDialog(frame, "Alphabet sort would be here");
 		}
@@ -176,6 +181,17 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		}
 		if (getItem.equals("Price")) {
 			JOptionPane.showMessageDialog(frame, "Price sort would be here");
+		}
+		
+		// ItemListener for filter
+		if (getItem2.equals("Organization")) {
+			JOptionPane.showMessageDialog(frame, "Organization filter would be here");
+		}
+		if (getItem2.equals("Platform")) {
+			JOptionPane.showMessageDialog(frame, "Platform filter would be here");
+		}
+		if (getItem2.equals("Genre")) {
+			JOptionPane.showMessageDialog(frame, "Genre filter would be here");
 		}
 		
 	}
