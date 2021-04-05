@@ -126,9 +126,11 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		LoginPage login = new LoginPage();
-		login.buildPage();
-		login.setVisible(true);
+		if (e.getSource().equals(login)) {
+			LoginPage loginP = new LoginPage();
+			loginP.buildPage();
+			loginP.setVisible(true);
+		}
 	}
 
 	@Override
