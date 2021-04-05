@@ -2,32 +2,30 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginPage extends JFrame implements ActionListener {
-	
+public class CreateAccountPage extends JFrame implements ActionListener {
 	private JPanel panel;
 	private JLabel userName;
 	private JLabel password;
+	private JLabel retypePass;
 	private JTextField userField;
 	private JTextField passField;
-	private JButton signIn;
-	private JButton createAccount;
+	private JTextField retypeField;
+	private JButton create;
 	
-	public LoginPage() {
-		super("Login");
+	public CreateAccountPage() {
+		super("Create An Account");
 		this.setBounds(250, 200, 400, 300);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 	
-	public void buildPage() {
+	public void build() {
 		panel = new JPanel();
 		GridLayout layout = new GridLayout(0,1);
 		panel.setLayout(layout);
@@ -36,37 +34,27 @@ public class LoginPage extends JFrame implements ActionListener {
 		password = new JLabel("Password: ");
 		userField = new JTextField(20);
 		passField = new JTextField(20);
-		signIn = new JButton("Sign In");
-		createAccount = new JButton("Create an Account");
+		retypePass = new JLabel("Confirm password: ");
+		retypeField = new JTextField(20);
+		create = new JButton("Create Account");
+		
 		panel.add(userName);
 		panel.add(userField);
 		panel.add(password);
 		panel.add(passField);
-		layout.setVgap(3);
-		panel.add(signIn);
-		panel.add(createAccount);
+		panel.add(retypePass);
+		panel.add(retypeField);
+		panel.add(create);
 		
-		signIn.addActionListener(this);
-		createAccount.addActionListener(this);
-		
+		create.addActionListener(this);
 		this.add(panel);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(signIn)) {
+		if (e.getSource().equals(create)) {
 			this.setVisible(false);
-		} else {
-			if (e.getSource().equals(createAccount)) {
-				this.setVisible(false);
-				CreateAccountPage createPage = new CreateAccountPage();
-				createPage.build();
-				createPage.setVisible(true);
-			}
 		}
 		
-		
-		
 	}
-
 }
