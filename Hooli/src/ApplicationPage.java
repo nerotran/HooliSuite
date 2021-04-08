@@ -74,7 +74,8 @@ public class ApplicationPage extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		try {
-			openWebpage(new URI("https://www.google.com/"));
+			if (!app.getLink().equals(""))
+				openWebpage(new URI(app.getLink()));
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
