@@ -108,11 +108,10 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		Application h3 = new Application("Suite3", "Hooli");
 		Application h4 = new Application("Suite4", "Hooli");
 		
-		Application[] list = new Application[] {h1, h2, h3, h4};
+		// Application[] list = new Application[] {h1, h2, h3, h4};
 		
-		// Attempting to implement FileReader Class
-		//ArrayList<Application> arrlist = FileReader.readAppFile("ApplicationData.csv");
-		//Application[] list = (Application[]) arrlist.toArray();
+		// Attempting to implement FileReader class
+		Application[] list = FileReader.readAppFile("ApplicationData.txt");
 		
 		listView = new JList<Application>(list);
 		listView.addMouseListener(this);
