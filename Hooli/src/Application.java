@@ -1,6 +1,3 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 public class Application {
 	private String name;
 	private String publisher;
@@ -8,30 +5,30 @@ public class Application {
 	private String description;
 	private double price;
 	private String link;
-	private LocalDateTime date;
+	private String date;
 	
 	public Application(String name, String publisher) {
-		this(name, publisher, "", "", 0, "", null);
+		this(name, publisher, "", "", 0, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform) {
-		this(name, publisher, platform, "", 0, "", null);
+		this(name, publisher, platform, "", 0, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description) {
-		this(name, publisher, platform, description, 0, "", null);
+		this(name, publisher, platform, description, 0, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price) {
-		this(name, publisher, platform, description, price, "", null);
+		this(name, publisher, platform, description, price, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link) {
-		this(name, publisher, platform, description, price, link, null);
+		this(name, publisher, platform, description, price, link, "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link,
-			LocalDateTime date) {
+			String date) {
 		this.name = name;
 		this.publisher = publisher;
 		this.platform = platform;
@@ -55,7 +52,7 @@ public class Application {
 			result += description;
 		
 		
-		result += " Price: $" + price;
+		result += " Price: " + price;
 		
 		result += " Link: ";
 		if (link != null)
@@ -63,7 +60,7 @@ public class Application {
 		
 		result += " Released: ";
 		if (date != null)
-			result += date.toLocalDate();
+			result += getDate();
 		
 		return result;
 	}
@@ -100,8 +97,8 @@ public class Application {
 		this.description = description;
 	}
 	
-	public double getPrice() {
-		return price;
+	public String getPrice() {
+		return String.format("$%,.2f", price);
 	}
 	
 	public void setPrice(double price) {
@@ -117,13 +114,10 @@ public class Application {
 	}
 	
 	public String getDate() {
-		if (date == null) {
-			return "";
-		}
-		return date.toLocalDate().toString();
+		return this.date;
 	}
 	
-	public void setDate(LocalDateTime date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
