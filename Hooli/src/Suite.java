@@ -34,6 +34,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	private JButton search;
 	private JScrollPane listScroll;
 	JList<Application> listView;
+	private boolean loggedIn;
 
 	public static void main(String[] args) {
 		new Suite();
@@ -50,6 +51,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		frame.add(listScroll, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		loggedIn = false;
 	}
 	
 	
@@ -120,6 +122,14 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		listScroll = new JScrollPane(listView);	
+	}
+	
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+	
+	public boolean getLoggedIn() {
+		return loggedIn;
 	}
 
 	@Override

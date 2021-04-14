@@ -20,6 +20,9 @@ public class LoginPage extends JFrame implements ActionListener {
 	private JButton signIn;
 	private JButton createAccount;
 	
+	private String userInfo;
+	private String passInfo;
+	
 	public LoginPage() {
 		super("Login");
 		this.setBounds(250, 200, 400, 300);
@@ -51,6 +54,13 @@ public class LoginPage extends JFrame implements ActionListener {
 		
 		this.add(panel);
 	}
+	
+	/*
+	public boolean validateLogin(String user, String pass) {
+	
+		
+	}
+	*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
