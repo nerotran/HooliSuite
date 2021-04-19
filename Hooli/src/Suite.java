@@ -146,8 +146,9 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 				appList.appList = search.newList();
 				list = search.newList();
 			}
-			System.out.println(list.size());
+			
 			frame.repaint();
+			list = originalList;
 		}
 		
 	}
