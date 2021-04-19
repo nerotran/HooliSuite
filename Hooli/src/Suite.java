@@ -88,12 +88,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	    search.addActionListener(this);
 	    topPanel.add(search);
 
-		filter = new JComboBox();
-		filter.addItem("[Filter By: ] ");
-		filter.addItem("Organization");
-		filter.addItem("Platform");
-		filter.addItem("Genre");
-		filter.addItemListener(this);
+		filter = new FilterBox(list, frame);
 		topPanel.add(filter);
 		
 
@@ -192,38 +187,38 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		
 	}
 
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		String getItem = (String)sort.getSelectedItem();
-		String getItem2 = (String)filter.getSelectedItem();
-		
-		// ItemListener for sort
-		if (getItem.equals("Alphabet")) {
-			JOptionPane.showMessageDialog(frame, "Alphabet sort would be here");
-		}
-		if (getItem.equals("Publisher")) {
-			JOptionPane.showMessageDialog(frame, "Publisher sort would be here");
-		}
-		if (getItem.equals("Date Added")) {
-			JOptionPane.showMessageDialog(frame, "Date Added sort would be here");
-		}
-		if (getItem.equals("Price")) {
-			JOptionPane.showMessageDialog(frame, "Price sort would be here");
-		}
-		
+//	@Override
+//	public void itemStateChanged(ItemEvent arg0) {
+//		// TODO Auto-generated method stub
+//		String getItem = (String)sort.getSelectedItem();
+//		String getItem2 = (String)filter.getSelectedItem();
+//		
+//		// ItemListener for sort
+//		if (getItem.equals("Alphabet")) {
+//			JOptionPane.showMessageDialog(frame, "Alphabet sort would be here");
+//		}
+//		if (getItem.equals("Publisher")) {
+//			JOptionPane.showMessageDialog(frame, "Publisher sort would be here");
+//		}
+//		if (getItem.equals("Date Added")) {
+//			JOptionPane.showMessageDialog(frame, "Date Added sort would be here");
+//		}
+//		if (getItem.equals("Price")) {
+//			JOptionPane.showMessageDialog(frame, "Price sort would be here");
+//		}
+//		
 		// ItemListener for filter
-		if (getItem2.equals("Organization")) {
-			JOptionPane.showMessageDialog(frame, "Organization filter would be here");
-		}
-		if (getItem2.equals("Platform")) {
-			JOptionPane.showMessageDialog(frame, "Platform filter would be here");
-		}
-		if (getItem2.equals("Genre")) {
-			JOptionPane.showMessageDialog(frame, "Genre filter would be here");
-		}
+//		if (getItem2.equals("Organization")) {
+//			JOptionPane.showMessageDialog(frame, "Organization filter would be here");
+//		}
+//		if (getItem2.equals("Platform")) {
+//			JOptionPane.showMessageDialog(frame, "Platform filter would be here");
+//		}
+//		if (getItem2.equals("Genre")) {
+//			JOptionPane.showMessageDialog(frame, "Genre filter would be here");
+//		}
 		
-	}
+//	}
 	
 
 }
