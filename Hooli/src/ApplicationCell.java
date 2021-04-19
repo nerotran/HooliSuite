@@ -18,7 +18,13 @@ public class ApplicationCell extends JLabel implements ListCellRenderer<Applicat
 			boolean isSelected, boolean cellHasFocus) {
 		
 		// TODO Auto-generated method stub
-		this.setText(value.getName() + "   by  " + value.getPublisher());
+		String date;
+		if (value.getDate() == null) {
+			date = "";
+		} else {
+			date = value.getDate().toString();
+		}
+		this.setText(String.format("%s by %s Price: %s on %s", value.getName(), value.getPublisher(), value.getPrice(), date));
 		JList.DropLocation dropLocation = list.getDropLocation();
         if (dropLocation != null && !dropLocation.isInsert() && dropLocation.getIndex() == index) {
             background = Color.BLUE;
