@@ -33,7 +33,9 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	private JButton login;
 	private JButton search;
 	private JScrollPane listScroll;
-	JList<Application> listView;
+	private JList<Application> listView;
+	private ArrayList<Application> list;
+	private ApplicationList<Application> appList;
 	private boolean loggedIn;
 
 	public static void main(String[] args) {
@@ -113,15 +115,16 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		// Application[] list = new Application[] {h1, h2, h3, h4};
 		
 		// Attempting to implement FileReader class
-		Application[] list = FileReader.readAppFile("ApplicationData.txt");
+		list = FileReader.readAppFile("ApplicationData.txt");
+		appList = new ApplicationList<Application>(list);
 		
-		listView = new JList<Application>(list);
+		listView = new JList<Application>(appList);
 		listView.addMouseListener(this);
 		listView.setCellRenderer(new ApplicationCell());
 		listView.setVisibleRowCount(1);
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		listScroll = new JScrollPane(listView);	
+		listScroll = new JScrollPane(listView);
 	}
 	
 	public void setLoggedIn(boolean loggedIn) {
