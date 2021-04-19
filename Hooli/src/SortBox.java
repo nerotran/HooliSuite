@@ -14,7 +14,6 @@ public class SortBox extends JComboBox implements ItemListener {
 	public SortBox(ArrayList<Application> list, JFrame frame) {
 		this.list = list;
 		this.frame = frame;
-		this.addItem("[Sort By: ] ");
 		this.addItem("Name");
 		this.addItem("Publisher");
 		this.addItem("Platform");
