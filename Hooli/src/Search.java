@@ -20,23 +20,25 @@ public class Search {
 //				finList.add(appList.get(i));
 //				return true;
 //			}
+			System.out.println(appList.get(i).getName().toUpperCase().contains(s.toUpperCase()));
 			if (appList.get(i).getName().toUpperCase().contains(s.toUpperCase())) {
 				finList.add(appList.get(i));
+				System.out.println(s + " " + appList.get(i).getName());
+				continue;
 			}
 			if (appList.get(i).getDescription().toUpperCase().contains(s.toUpperCase())) {
 				finList.add(appList.get(i));
-			}
-			if (appList.get(i).getLink().toUpperCase().contains(s.toUpperCase())) {
-				finList.add(appList.get(i));
+				System.out.println(s + " " + appList.get(i).getDescription());
+				continue;
 			}
 			if (appList.get(i).getPlatform().toUpperCase().contains(s.toUpperCase())) {
 				finList.add(appList.get(i));
-			}
-			if (appList.get(i).getPrice().toString().toUpperCase().contains(s.toUpperCase())) {
-				finList.add(appList.get(i));
+				System.out.println(s + " " + appList.get(i).getPlatform());
+				continue;
 			}
 			if (appList.get(i).getPublisher().toUpperCase().contains(s.toUpperCase())) {
 				finList.add(appList.get(i));
+				continue;
 			}
 		}
 	}
