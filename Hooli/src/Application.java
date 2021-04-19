@@ -140,7 +140,7 @@ public class Application {
 		Scanner scanner = null;
 		
 		try {
-			file = new File(this.name + ".comment");
+			file = new File("comments\\" + this.name + ".comment");
 			scanner = new Scanner(file);
 			//scanner.useDelimiter(",");
 			while (scanner.hasNext()) {

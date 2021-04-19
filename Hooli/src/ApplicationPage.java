@@ -148,7 +148,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		PrintWriter out = null;
 		
 		try {
-			out = new PrintWriter(new File(app.getName() + ".comment"));
+			out = new PrintWriter(new File("comments\\" + app.getName() + ".comment"));
 			for (Comment c : app.getComments()) {
 				out.write(String.format("%s,%s\n", c.getAuthor(), c.getContent()));
 			}
