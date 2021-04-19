@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class Application {
 	private String name;
 	private String publisher;
@@ -5,30 +7,30 @@ public class Application {
 	private String description;
 	private double price;
 	private String link;
-	private String date;
+	private Date date;
 	
 	public Application(String name, String publisher) {
-		this(name, publisher, "", "", 0, "", "");
+		this(name, publisher, "", "", 0, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform) {
-		this(name, publisher, platform, "", 0, "", "");
+		this(name, publisher, platform, "", 0, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description) {
-		this(name, publisher, platform, description, 0, "", "");
+		this(name, publisher, platform, description, 0, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price) {
-		this(name, publisher, platform, description, price, "", "");
+		this(name, publisher, platform, description, price, "", null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link) {
-		this(name, publisher, platform, description, price, link, "");
+		this(name, publisher, platform, description, price, link, null);
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link,
-			String date) {
+			Date date) {
 		this.name = name;
 		this.publisher = publisher;
 		this.platform = platform;
@@ -97,8 +99,8 @@ public class Application {
 		this.description = description;
 	}
 	
-	public String getPrice() {
-		return String.format("$%,.2f", price);
+	public Double getPrice() {
+		return new Double(price);
 	}
 	
 	public void setPrice(double price) {
@@ -113,11 +115,11 @@ public class Application {
 		this.link = link;
 	}
 	
-	public String getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 	
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	
