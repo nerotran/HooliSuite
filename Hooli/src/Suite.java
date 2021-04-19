@@ -20,6 +20,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -41,6 +42,8 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	private boolean loggedIn;
 
 	public static void main(String[] args) {
+		File file = new File("comments");
+		file.mkdirs();
 		new Suite();
 
 	}
