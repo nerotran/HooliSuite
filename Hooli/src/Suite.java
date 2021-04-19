@@ -21,6 +21,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Suite implements ActionListener,MouseListener,ItemListener {
@@ -29,7 +30,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	private JPanel panel;
 	private JTextField searchBar;
 	private JComboBox filter;
-	private JComboBox sort;
+	private SortBox sort;
 	private JButton login;
 	private JButton search;
 	private JScrollPane listScroll;
@@ -45,6 +46,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	
 	public Suite() {
 		super();
+		list = FileReader.readAppFile("ApplicationData.txt");
 		makeFrame();
 		makePanel();
 		topPanel();
@@ -89,13 +91,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		topPanel.add(filter);
 		
 
-		sort = new JComboBox();
-		sort.addItem("[Sort By: ] ");
-		sort.addItem("Alphabet");
-		sort.addItem("Publisher");
-		sort.addItem("Date Added");
-		sort.addItem("Price");
-		sort.addItemListener(this);
+		sort = new SortBox(list, frame);
 		topPanel.add(sort);
 
 		
@@ -115,7 +111,6 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		// Application[] list = new Application[] {h1, h2, h3, h4};
 		
 		// Attempting to implement FileReader class
-		list = FileReader.readAppFile("ApplicationData.txt");
 		appList = new ApplicationList<Application>(list);
 		
 		listView = new JList<Application>(appList);
