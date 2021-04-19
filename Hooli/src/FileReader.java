@@ -38,7 +38,7 @@ public class FileReader extends Reader {
 		    return list;
 		  } */
 	
-	public static Application[] readAppFile(String csvFile) {
+	public static ArrayList<Application> readAppFile(String csvFile) {
 		ArrayList<Application> arrlist = new ArrayList<Application>();
 		try {
 			File file = new File("ApplicationData.txt");
@@ -80,15 +80,8 @@ public class FileReader extends Reader {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		Application[] list = new Application[arrlist.size()];
-		int count = 0;
-		for (Application app : arrlist) {
-			list[count] = app;
-			count++;
-		}
-		
-		return list;
+	
+		return arrlist;
 	}
 
 	@Override
