@@ -17,7 +17,7 @@ public class SortBox extends JComboBox implements ItemListener {
 		this.addItem("[Sort By: ] ");
 		this.addItem("Name");
 		this.addItem("Publisher");
-		this.addItem("Date Added");
+		this.addItem("Platform");
 		this.addItem("Price");
 		this.addItemListener(this);
 	}
@@ -33,8 +33,8 @@ public class SortBox extends JComboBox implements ItemListener {
 		if (getItem.equals("Publisher")) {
 			list.sort(Comparator.comparing(Application::getPublisher));
 		}
-		if (getItem.equals("Date Added")) {
-			list.sort(Comparator.comparing(Application::getDate));
+		if (getItem.equals("Platform")) {
+			list.sort(Comparator.comparing(Application::getPlatform));
 		}
 		if (getItem.equals("Price")) {
 			list.sort(Comparator.comparing(Application::getPrice));
