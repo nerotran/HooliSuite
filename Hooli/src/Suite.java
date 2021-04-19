@@ -35,6 +35,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	private JButton search;
 	private JScrollPane listScroll;
 	private JList<Application> listView;
+	private ArrayList<Application> originalList;
 	private ArrayList<Application> list;
 	private ApplicationList<Application> appList;
 	private boolean loggedIn;
@@ -107,6 +108,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 	public void appList() {
 		// Attempting to implement FileReader class
 		appList = new ApplicationList<Application>(list);
+		originalList = list;
 		
 		listView = new JList<Application>(appList);
 		listView.addMouseListener(this);
@@ -136,8 +138,12 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		if (e.getSource().equals(search)) {
 			String text = searchBar.getText();
 			Search search = new Search(text, list);
-			if (text.equals("")) list = search.originalList();
+			if (text.equals("")) {
+				appList.appList = originalList;
+				list = originalList;
+			}
 			else {
+				appList.appList = search.newList();
 				list = search.newList();
 			}
 			System.out.println(list.size());
