@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Application {
 	private String name;
@@ -8,6 +12,7 @@ public class Application {
 	private double price;
 	private String link;
 	private Date date;
+	private ArrayList<Comment> comments;
 	
 	public Application(String name, String publisher) {
 		this(name, publisher, "", "", 0, "", null);
@@ -38,6 +43,8 @@ public class Application {
 		this.price = price;
 		this.link = link;
 		this.date = date;
+		comments = new ArrayList<Comment>();
+		readFromFile();
 	}
 	
 	@Override
@@ -119,8 +126,37 @@ public class Application {
 		return this.date;
 	}
 	
+	public ArrayList<Comment> getComments() {
+		return comments;
+	}
+
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public void readFromFile() {
+		
+		File file = null;
+		Scanner scanner = null;
+		
+		try {
+			file = new File(this.name + ".comment");
+			scanner = new Scanner(file);
+			//scanner.useDelimiter(",");
+			while (scanner.hasNext()) {
+				String tempStr = scanner.nextLine();
+				String author = tempStr.substring(0, tempStr.indexOf(","));
+				String content = tempStr.substring(tempStr.indexOf(",") + 1);
+				Comment temp = new Comment(author, content);
+				comments.add(temp);
+			}
+			
+			scanner.close();
+			
+		} catch (FileNotFoundException e) {
+		} finally {
+			
+		}
 	}
 	
 	

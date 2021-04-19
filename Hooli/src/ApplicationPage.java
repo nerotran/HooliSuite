@@ -1,7 +1,15 @@
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Desktop;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -10,19 +18,26 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 
-public class ApplicationPage extends JFrame implements MouseListener {
+public class ApplicationPage extends JFrame implements ActionListener, WindowListener {
 	private Application app;
 	private JLabel name, publisher, platform, description, price, date;
 	private JButton link;
 	private JPanel info;
+	private JTabbedPane tabs;
+	private JTextArea comments;
+	private JTextArea commentBox;
 	
 	public ApplicationPage(Application app) {
 		super();
 		this.app = app;
+		this.setLayout(new BorderLayout());
 		this.setBounds(50, 50, 800, 600);
 		this.setResizable(true);
 		this.setAlwaysOnTop(true);
+		this.addWindowListener(this);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		graphics();
 	}
@@ -47,13 +62,34 @@ public class ApplicationPage extends JFrame implements MouseListener {
 		info.add(date);
 		
 		link = new JButton("Link");
-		link.addMouseListener(this);
+		link.addActionListener(this);
 		info.add(link);
 		
 		description = new JLabel("Description: " + this.app.getDescription());
 		info.add(description);
 		
-		this.add(info);
+		JPanel post = new JPanel();
+		commentBox = new JTextArea(20,70);
+		post.add(commentBox);
+		JButton postButton = new JButton("Post");
+		post.add(postButton);
+		postButton.addActionListener(this);
+		
+		comments = new JTextArea();
+		comments.setEditable(false);
+		
+		for (Comment c : app.getComments()) {
+			comments.append(String.format("Author: %s\n%s\n", c.getAuthor(), c.getContent()));
+		}
+		
+		tabs = new JTabbedPane();
+		tabs.addTab("Comments", comments);
+		tabs.addTab("Post a comment", post);
+		
+		this.add(info, BorderLayout.NORTH);
+		this.add(tabs, BorderLayout.CENTER);
+		
+		
 
 	}
 	
@@ -71,37 +107,87 @@ public class ApplicationPage extends JFrame implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
-		try {
-			if (!app.getLink().equals(""))
-				openWebpage(new URI(app.getLink()));
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (event.getActionCommand().equals("Link")) {
+			try {
+				if (!app.getLink().equals(""))
+					openWebpage(new URI(app.getLink()));
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		if (event.getActionCommand().equals("Post")) {
+			Comment temp = new Comment("Anonymous", commentBox.getText());
+			app.getComments().add(temp);
+			comments.append(String.format("Author: %s\n%s\n", temp.getAuthor(), temp.getContent()));
+			commentBox.setText("");
+		}
+		
+		this.repaint();
+		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void windowClosed(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void windowClosing(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		PrintWriter out = null;
+		
+		try {
+			out = new PrintWriter(new File(app.getName() + ".comment"));
+			for (Comment c : app.getComments()) {
+				out.write(String.format("%s,%s\n", c.getAuthor(), c.getContent()));
+			}
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Error in writing to file");
+		} finally {
+			
+			try {
+				out.close();
+				
+			} catch (Exception e) {
+				//
+			}
+			
+		}
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
