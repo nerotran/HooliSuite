@@ -81,6 +81,7 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		topPanel.add(searchBar);
 		
 	    search = new JButton("Search");
+	    search.addActionListener(this);
 	    topPanel.add(search);
 
 		filter = new JComboBox();
@@ -132,6 +133,17 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 			loginP.buildPage();
 			loginP.setVisible(true);
 		}
+		if (e.getSource().equals(search)) {
+			String text = searchBar.getText();
+			Search search = new Search(text, list);
+			if (text.equals("")) list = search.originalList();
+			else {
+				list = search.newList();
+			}
+			System.out.println(list.size());
+			frame.repaint();
+		}
+		
 	}
 
 	@Override
