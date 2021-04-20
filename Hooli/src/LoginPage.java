@@ -56,12 +56,9 @@ public class LoginPage extends JFrame implements ActionListener {
 		this.add(panel);
 	}
 	
-	/*
 	public boolean validateLogin(String user, String pass) {
-	
-		
+		return false;
 	}
-	*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
