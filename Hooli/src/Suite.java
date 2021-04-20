@@ -32,6 +32,7 @@ public class Suite implements ActionListener,MouseListener {
 	private SortBox sort;
 	private JButton login;
 	private JButton search;
+	private JButton addEntry;
 	private JScrollPane listScroll;
 	private JList<Application> listView;
 	private ArrayList<Application> originalList;
@@ -97,6 +98,10 @@ public class Suite implements ActionListener,MouseListener {
 		login = new JButton("Login");
 		login.addActionListener(this);
 		topPanel.add(login);
+		
+		addEntry = new JButton("Add Entry");
+		addEntry.addActionListener(this);
+		topPanel.add(addEntry);
 
 		panel.add(topPanel, BorderLayout.NORTH);
 	}
@@ -126,6 +131,11 @@ public class Suite implements ActionListener,MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if (e.getSource().equals(addEntry)) {
+			AddEntry addEntr = new AddEntry();
+			addEntr.buildPage();
+			addEntr.setVisible(true);
+		}
 		if (e.getSource().equals(login)) {
 			LoginPage loginP = new LoginPage();
 			loginP.buildPage();
