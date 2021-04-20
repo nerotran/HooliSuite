@@ -15,20 +15,23 @@ import javax.swing.JTextField;
 
 public class FilterBox extends JComboBox implements ActionListener {
 	static ArrayList<Application> list;
-	static ApplicationList<Application> appList;
+	static Suite s;
+	ArrayList<Application> OriginalList;
 	JFrame frame, barFrame;
 	JTextField fSearchBar;
 	JButton fSearch;
 	JPanel fPanel;
 	static String filter, filterWord;
 	
-	public FilterBox(ArrayList<Application> list, JFrame frame) {
+	public FilterBox(ArrayList<Application> list, Suite s) {
+		this.s = s;
+		this.OriginalList = list;
 		this.list = list;
 		this.frame = frame;
 		this.addItem("[Filter By: ]");
 		this.addItem("Publisher");
 		this.addItem("Platform");
-		this.addItem("Genre");
+		this.addItem("Default");
 		this.addActionListener(this);
 	}
 	
@@ -38,13 +41,18 @@ public class FilterBox extends JComboBox implements ActionListener {
 			if (filter.equals("Publisher")) {
 				System.out.println(filterWord);
 				OrgFilter oFilter = new OrgFilter(filterWord, list);
+				s.appList.appList = oFilter.newList();
+				s.list = oFilter.newList();
+				s.frame.repaint();
 				
 				
 			}
 			if (filter.equals("Platform")) {
 				System.out.println(filterWord);
 				PlatFilter pFilter = new PlatFilter(filterWord, list);
-				
+				s.appList.appList = pFilter.newList();
+				s.list = pFilter.newList();
+				s.frame.repaint();
 				
 			}
 			
@@ -89,9 +97,12 @@ public class FilterBox extends JComboBox implements ActionListener {
 			filter = "Platform";
 			FilterBox popUp = new FilterBox();
 		}
-		if (getItem2.equals("Genre")) {
-			FilterBox popUp = new FilterBox();
+		if (getItem2.equals("Default")) {
+			s.appList.appList = s.originalList;
+			s.list = s.originalList;
+			s.frame.repaint();
 		}
+		
 	}
 
 }
