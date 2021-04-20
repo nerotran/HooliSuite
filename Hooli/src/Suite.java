@@ -157,50 +157,6 @@ public class Suite implements ActionListener,MouseListener {
 			list = originalList;
 		}
 
-		switch (filterBy) {
-		case "Organization":
-			String filterWord = filterBar.getText();
-			System.out.println("Testing O " + filterWord);
-			OrgFilter orgFilter = new OrgFilter(filterWord, list);
-
-			if (filterWord.equals("")) {
-				break;
-			} else {
-				appList.appList = orgFilter.newList();
-				list = orgFilter.newList();
-			}
-
-			frame.repaint();
-			list = originalList;
-
-			break;
-		case "Platform":
-			System.out.println("Platform");
-			filterWord = filterBar.getText();
-			System.out.println("Testing O " + filterWord);
-			PlatFilter pFilter = new PlatFilter(filterWord, list);
-
-			if (filterWord.equals("")) {
-				break;
-			} else {
-				appList.appList = pFilter.newList();
-				list = pFilter.newList();
-			}
-
-			frame.repaint();
-			list = originalList;
-			break;
-		case "Genre":
-			System.out.println("Genre");
-			break;
-		default:
-			//System.out.println("GoodBye");
-//			appList.appList = originalList;
-//			list = originalList;
-//			frame.repaint();
-//			list = originalList;
-		}
-
 	}
 
 	@Override
