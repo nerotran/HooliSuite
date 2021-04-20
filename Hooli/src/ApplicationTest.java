@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest {
@@ -52,7 +54,7 @@ class ApplicationTest {
 
 	@Test
 	void testApplicationStringStringStringStringDoubleStringString() {
-		Application a = new Application ("H1", "Hooli", "PC", "This our CSE201 project.", 10, "https://www.google.com", "4/9/2021");
+		Application a = new Application ("H1", "Hooli", "PC", "This our CSE201 project.", 10, "https://www.google.com", new Date("4/9/2021"));
 		assertEquals(a.getName(), "H1");
 		assertEquals(a.getPublisher(), "Hooli");
 		assertEquals(a.getPlatform(), "PC");
@@ -64,7 +66,7 @@ class ApplicationTest {
 
 	@Test
 	void testToString() {
-		Application a = new Application ("H1", "Hooli", "PC", "This our CSE201 project.", 10, "https://www.google.com", "4/9/2021");
+		Application a = new Application ("H1", "Hooli", "PC", "This our CSE201 project.", 10, "https://www.google.com", new Date("4/9/2021"));
 		assertEquals("Name: H1 Publisher: Hooli Platform: PC Description:"
 				+ " This our CSE201 project. Price: 10.0 Link: https://www.google.com Released: 4/9/2021", a.toString());
 	}
