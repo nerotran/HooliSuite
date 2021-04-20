@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 public class Suite implements ActionListener,MouseListener {
 	
-	private JFrame frame;
+	JFrame frame;
 	private JPanel panel;
 	private JTextField searchBar;
 	private JComboBox filter;
@@ -35,9 +35,9 @@ public class Suite implements ActionListener,MouseListener {
 	private JButton addEntry;
 	private JScrollPane listScroll;
 	private JList<Application> listView;
-	private ArrayList<Application> originalList;
-	private ArrayList<Application> list;
-	private ApplicationList<Application> appList;
+	ArrayList<Application> originalList;
+	ArrayList<Application> list;
+	ApplicationList<Application> appList;
 	private boolean loggedIn;
 
 	public static void main(String[] args) {
@@ -87,7 +87,7 @@ public class Suite implements ActionListener,MouseListener {
 	    search.addActionListener(this);
 	    topPanel.add(search);
 
-		filter = new FilterBox(list, frame);
+		filter = new FilterBox(list, this);
 		topPanel.add(filter);
 		
 
