@@ -16,8 +16,6 @@ import javax.swing.SpringLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -25,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class Suite implements ActionListener,MouseListener,ItemListener {
+public class Suite implements ActionListener,MouseListener {
 	
 	private JFrame frame;
 	private JPanel panel;
@@ -186,39 +184,5 @@ public class Suite implements ActionListener,MouseListener,ItemListener {
 		// TODO Auto-generated method stub
 		
 	}
-
-//	@Override
-//	public void itemStateChanged(ItemEvent arg0) {
-//		// TODO Auto-generated method stub
-//		String getItem = (String)sort.getSelectedItem();
-//		String getItem2 = (String)filter.getSelectedItem();
-//		
-//		// ItemListener for sort
-//		if (getItem.equals("Alphabet")) {
-//			JOptionPane.showMessageDialog(frame, "Alphabet sort would be here");
-//		}
-//		if (getItem.equals("Publisher")) {
-//			JOptionPane.showMessageDialog(frame, "Publisher sort would be here");
-//		}
-//		if (getItem.equals("Date Added")) {
-//			JOptionPane.showMessageDialog(frame, "Date Added sort would be here");
-//		}
-//		if (getItem.equals("Price")) {
-//			JOptionPane.showMessageDialog(frame, "Price sort would be here");
-//		}
-//		
-		// ItemListener for filter
-//		if (getItem2.equals("Organization")) {
-//			JOptionPane.showMessageDialog(frame, "Organization filter would be here");
-//		}
-//		if (getItem2.equals("Platform")) {
-//			JOptionPane.showMessageDialog(frame, "Platform filter would be here");
-//		}
-//		if (getItem2.equals("Genre")) {
-//			JOptionPane.showMessageDialog(frame, "Genre filter would be here");
-//		}
-		
-//	}
-	
 
 }
