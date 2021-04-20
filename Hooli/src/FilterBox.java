@@ -1,15 +1,24 @@
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class FilterBox extends JComboBox implements ItemListener {
+public class FilterBox extends JComboBox implements ActionListener {
 	ArrayList<Application> list;
-	JFrame frame;
+	JFrame frame, barFrame;
+	JTextField fSearchBar;
+	JButton fSearch;
+	JPanel fPanel;
 	
 	public FilterBox(ArrayList<Application> list, JFrame frame) {
 		this.list = list;
@@ -18,24 +27,44 @@ public class FilterBox extends JComboBox implements ItemListener {
 		this.addItem("Organization");
 		this.addItem("Platform");
 		this.addItem("Genre");
-		this.addItemListener(this);
+		this.addActionListener(this);
 	}
-
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
+	
+	public FilterBox() {
+		super();
+		JFrame barFrame = new JFrame("Filter");
+		
+		JTextField fSearchBar = new JTextField(20);
+		JButton fSearch = new JButton("Filter Search");
+		
+		fPanel = new JPanel();
+		//fPanel.setLayout(new BorderLayout());
+		
+		
+		fPanel.add(fSearchBar);
+		fPanel.add(fSearch);
+		
+		barFrame.add(fPanel);
+		
+		//barFrame.setLayout(new BorderLayout());
+		barFrame.setBounds(150, 150, 400, 400);
+		barFrame.setResizable(true);
+		barFrame.setVisible(true);
+	}
+	
+	
+	public void actionPerformed(ActionEvent e) {
 		String getItem2 = (String)this.getSelectedItem();
 		
 		if (getItem2.equals("Organization")) {
-			JOptionPane.showMessageDialog(frame, "Organization filter would be here");
+			FilterBox popUp = new FilterBox();
 		}
 		if (getItem2.equals("Platform")) {
-			JOptionPane.showMessageDialog(frame, "Platform filter would be here");
+			FilterBox popUp = new FilterBox();
 		}
 		if (getItem2.equals("Genre")) {
-			JOptionPane.showMessageDialog(frame, "Genre filter would be here");
+			FilterBox popUp = new FilterBox();
 		}
-		
 	}
 
 }
