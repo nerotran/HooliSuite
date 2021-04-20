@@ -14,18 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class FilterBox extends JComboBox implements ActionListener {
-	ArrayList<Application> list;
+	static ArrayList<Application> list;
+	static ApplicationList<Application> appList;
 	JFrame frame, barFrame;
 	JTextField fSearchBar;
 	JButton fSearch;
 	JPanel fPanel;
-	String filter;
+	static String filter, filterWord;
 	
 	public FilterBox(ArrayList<Application> list, JFrame frame) {
 		this.list = list;
 		this.frame = frame;
 		this.addItem("[Filter By: ]");
-		this.addItem("Organization");
+		this.addItem("Publisher");
 		this.addItem("Platform");
 		this.addItem("Genre");
 		this.addActionListener(this);
@@ -33,9 +34,20 @@ public class FilterBox extends JComboBox implements ActionListener {
 	
 	class AddFSearchListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			if (filter.equals("Organization")) {
-				//filter by organization
+			filterWord = fSearchBar.getText();
+			if (filter.equals("Publisher")) {
+				System.out.println(filterWord);
+				OrgFilter oFilter = new OrgFilter(filterWord, list);
+				
+				
 			}
+			if (filter.equals("Platform")) {
+				System.out.println(filterWord);
+				PlatFilter pFilter = new PlatFilter(filterWord, list);
+				
+				
+			}
+			
 			System.out.println("TESTING ONE");
 		}
 	}
@@ -44,8 +56,8 @@ public class FilterBox extends JComboBox implements ActionListener {
 		super(); 
 		JFrame barFrame = new JFrame("Filter");
 		
-		JTextField fSearchBar = new JTextField(20);
-		JButton fSearch = new JButton("Filter Search");
+		fSearchBar = new JTextField(20);
+		fSearch = new JButton("Filter Search");
 		AddFSearchListener l = new AddFSearchListener();
 		fSearch.addActionListener(l);
 		
@@ -68,11 +80,13 @@ public class FilterBox extends JComboBox implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String getItem2 = (String)this.getSelectedItem();
 		
-		if (getItem2.equals("Organization")) {
-			filter = "Organization";
+		if (getItem2.equals("Publisher")) {
+			filter = "Publisher";
+			//filterWord = fSearchBar.getText();
 			FilterBox popUp = new FilterBox();
 		}
 		if (getItem2.equals("Platform")) {
+			filter = "Platform";
 			FilterBox popUp = new FilterBox();
 		}
 		if (getItem2.equals("Genre")) {
