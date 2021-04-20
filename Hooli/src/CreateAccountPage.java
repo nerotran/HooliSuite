@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -50,10 +51,30 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 		this.add(panel);
 	}
 	
+	public boolean textFieldEmpty(String user, String pass1, String pass2) {
+		if (user.equals("") || pass1.equals("") || pass2.equals("")) {
+			JOptionPane.showMessageDialog(this, "One or more field is empty");
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean passwordsMatch(String pass1, String pass2) {
+		if (pass1.equals(pass2)) {
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(this, "Passwords do not match");
+			return false;
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(create)) {
-			this.setVisible(false);
+			textFieldEmpty(userField.getText(), passField.getText(), retypeField.getText());
+			passwordsMatch(passField.getText(), retypeField.getText());
+			//this.setVisible(false);
 		}
 		
 	}
