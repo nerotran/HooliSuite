@@ -168,8 +168,12 @@ public class Suite implements ActionListener, MouseListener {
 			System.out.println("Testing O " + filterWord);
 			OrgFilter orgFilter = new OrgFilter(filterWord, list);
 
-			appList.appList = orgFilter.newList();
-			list = orgFilter.newList();
+			if (filterWord.equals("")) {
+				break;
+			} else {
+				appList.appList = orgFilter.newList();
+				list = orgFilter.newList();
+			}
 
 			frame.repaint();
 			list = originalList;
