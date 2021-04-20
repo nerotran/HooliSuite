@@ -23,11 +23,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class Suite implements ActionListener, MouseListener {
-
+public class Suite implements ActionListener,MouseListener {
+	
 	private JFrame frame;
 	private JPanel panel;
-	private JTextField searchBar, filterBar;
+	private JTextField searchBar;
 	private JComboBox filter;
 	private SortBox sort;
 	private JButton login;
@@ -46,7 +46,7 @@ public class Suite implements ActionListener, MouseListener {
 		new Suite();
 
 	}
-
+	
 	public Suite() {
 		super();
 		list = FileReader.readAppFile("ApplicationData.txt");
@@ -61,43 +61,40 @@ public class Suite implements ActionListener, MouseListener {
 		frame.setVisible(true);
 		loggedIn = false;
 	}
-
+	
+	
 	public void makeFrame() {
 		frame = new JFrame("Hooli Suite");
 		frame.setLayout(new BorderLayout());
 		frame.setBounds(50, 50, 800, 600);
 		frame.setResizable(true);
 	}
-
+	
 	public void makePanel() {
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Hooli Suite"));
+		panel.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createEtchedBorder(), "Hooli Suite"));
 	}
-
+	
 	public void topPanel() {
 		JPanel topPanel = new JPanel();
-
+        	    
 		searchBar = new JTextField(20);
 		topPanel.add(searchBar);
+		
+	    search = new JButton("Search");
+	    search.addActionListener(this);
+	    topPanel.add(search);
 
-		search = new JButton("Search");
-		search.addActionListener(this);
-		topPanel.add(search);
-
-		filterBar = new JTextField(10);
-		topPanel.add(filterBar);
-		filter = new JComboBox();
-		filter.addItem("[Filter By: ]");
-		filter.addItem("Organization");
-		filter.addItem("Platform");
-		filter.addItem("Genre");
-		filter.addActionListener(this);
+		filter = new FilterBox(list, frame);
 		topPanel.add(filter);
+		
 
 		sort = new SortBox(list, frame);
 		topPanel.add(sort);
 
+		
 		login = new JButton("Login");
 		login.addActionListener(this);
 		topPanel.add(login);
@@ -108,25 +105,25 @@ public class Suite implements ActionListener, MouseListener {
 
 		panel.add(topPanel, BorderLayout.NORTH);
 	}
-
+	
 	public void appList() {
 		// Attempting to implement FileReader class
 		appList = new ApplicationList<Application>(list);
 		originalList = list;
-
+		
 		listView = new JList<Application>(appList);
 		listView.addMouseListener(this);
 		listView.setCellRenderer(new ApplicationCell());
 		listView.setVisibleRowCount(1);
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+		
 		listScroll = new JScrollPane(listView);
 	}
-
+	
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
-
+	
 	public boolean getLoggedIn() {
 		return loggedIn;
 	}
@@ -139,9 +136,6 @@ public class Suite implements ActionListener, MouseListener {
 			addEntr.buildPage();
 			addEntr.setVisible(true);
 		}
-
-		String filterBy = (String) filter.getSelectedItem();
-
 		if (e.getSource().equals(login)) {
 			LoginPage loginP = new LoginPage();
 			loginP.buildPage();
@@ -153,11 +147,12 @@ public class Suite implements ActionListener, MouseListener {
 			if (text.equals("")) {
 				appList.appList = originalList;
 				list = originalList;
-			} else {
+			}
+			else {
 				appList.appList = search.newList();
 				list = search.newList();
 			}
-
+			
 			frame.repaint();
 			list = originalList;
 		}
@@ -213,35 +208,35 @@ public class Suite implements ActionListener, MouseListener {
 		// TODO Auto-generated method stub
 		if (e.getClickCount() == 2) {
 			Application selectedItem = (Application) listView.getSelectedValue();
-			ApplicationPage appPage = new ApplicationPage(selectedItem);
-			appPage.setVisible(true);
-
+		    ApplicationPage appPage = new ApplicationPage(selectedItem);
+		    appPage.setVisible(true);
+		    
 		}
-
+       
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
