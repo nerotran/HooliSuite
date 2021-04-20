@@ -1,6 +1,14 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,13 +26,59 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 	private JTextField passField;
 	private JTextField retypeField;
 	private JButton create;
+	Map<String, String> userInfo;
 	
 	public CreateAccountPage() {
 		super("Create An Account");
 		this.setBounds(250, 200, 400, 300);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		userInfo = pullUserInfo("UserInfo.csv");
 		build();
+	}
+	
+	public Map<String, String> pullUserInfo(String fileName) {
+		File file = new File(fileName);
+		String userData = "";
+		Map<String, String> data = new HashMap<>();
+		try {
+			Scanner input = new Scanner(file);
+			if (input.hasNextLine()) {
+				input.nextLine();
+			}
+			while (input.hasNext()) {
+				userData = userData + input.next();
+			}
+			
+			String[] userArray = userData.split(",");
+			for (int i = 0; i+1 < userArray.length; i+=2) {
+				data.put(userArray[i], userArray[i+1]);
+			}
+			
+			input.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		
+		return data;
+	}
+	
+	public void writeToFile(String fileName, Map<String, String> info) {
+		File file = new File(fileName);
+		try {
+			PrintWriter output = new PrintWriter(file);
+			output.append("Username, Password \n");
+			
+			Set<Entry<String, String>> infoSet = info.entrySet();
+			for (Entry<String, String> entry : infoSet) {
+				output.append(entry.getKey() + "," + entry.getValue() + "\n");
+			}
+			
+			output.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		
 	}
 	
 	public void build() {
@@ -70,12 +124,29 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 		}
 	}
 	
+	public boolean userNameAvailable(String user) {
+		if (userInfo.containsKey(user.toLowerCase())) {
+			JOptionPane.showMessageDialog(this, "This username is taken");
+			return false;
+		} 
+		
+		return true;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(create)) {
-			textFieldEmpty(userField.getText(), passField.getText(), retypeField.getText());
-			passwordsMatch(passField.getText(), retypeField.getText());
-			//this.setVisible(false);
+			if (!textFieldEmpty(userField.getText(), passField.getText(), retypeField.getText())) {
+				if (userNameAvailable(userField.getText())) {
+					if (passwordsMatch(passField.getText(), retypeField.getText())) {
+						userInfo.put(userField.getText().toLowerCase(), passField.getText());
+						writeToFile("UserInfo.csv", userInfo);
+						this.setVisible(false);
+						LoginPage loginP = new LoginPage();
+						loginP.setVisible(true);
+					}
+				}
+			}
 		}
 		
 	}
