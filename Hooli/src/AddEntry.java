@@ -16,11 +16,16 @@ public class AddEntry extends JFrame implements ActionListener {
 	private JLabel platform;
 	private JLabel price;
 	private JLabel release;
+	private JLabel desc;
+	private JLabel link;
 	private JTextField nameInfo;
 	private JTextField publishInfo;
 	private JTextField platformInfo;
 	private JTextField priceInfo;
 	private JTextField releaseInfo;
+	private JTextField descInfo;
+	private JTextField linkInfo;
+	private JButton addBut;
 	
 	public AddEntry() {
 		super("Add Entry");
@@ -39,11 +44,16 @@ public class AddEntry extends JFrame implements ActionListener {
 		platform = new JLabel("Platform: ");
 		price = new JLabel("Price: ");
 		release = new JLabel("Released: ");
-		nameInfo = new JTextField(20);
-		publishInfo = new JTextField(20);
-		platformInfo = new JTextField(20);
-		priceInfo = new JTextField(20);
-		releaseInfo = new JTextField(20);
+		desc = new JLabel("Description: ");
+		link = new JLabel("Link: ");
+		nameInfo = new JTextField(10);
+		publishInfo = new JTextField(10);
+		platformInfo = new JTextField(10);
+		priceInfo = new JTextField(10);
+		releaseInfo = new JTextField(10);
+		descInfo = new JTextField(30);
+		linkInfo = new JTextField(10);
+		addBut = new JButton("Add Entry");
 		
 		panel.add(name);
 		panel.add(nameInfo);
@@ -55,7 +65,12 @@ public class AddEntry extends JFrame implements ActionListener {
 		panel.add(priceInfo);
 		panel.add(release);
 		panel.add(releaseInfo);
+		panel.add(desc);
+		panel.add(descInfo);
+		panel.add(link);
+		panel.add(linkInfo);
 		layout.setVgap(3);
+		panel.add(addBut);
 		
 		this.add(panel);
 	}
