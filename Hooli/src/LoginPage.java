@@ -28,6 +28,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		this.setBounds(250, 200, 400, 300);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		buildPage();
 	}
 	
 	public void buildPage() {
@@ -70,7 +71,6 @@ public class LoginPage extends JFrame implements ActionListener {
 			if (e.getSource().equals(createAccount)) {
 				this.setVisible(false);
 				CreateAccountPage createPage = new CreateAccountPage();
-				createPage.build();
 				createPage.setVisible(true);
 			}
 		}

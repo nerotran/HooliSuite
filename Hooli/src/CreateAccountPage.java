@@ -24,6 +24,7 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 		this.setBounds(250, 200, 400, 300);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		build();
 	}
 	
 	public void build() {

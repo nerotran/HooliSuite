@@ -138,7 +138,6 @@ public class Suite implements ActionListener,MouseListener {
 		}
 		if (e.getSource().equals(login)) {
 			LoginPage loginP = new LoginPage();
-			loginP.buildPage();
 			loginP.setVisible(true);
 		}
 		if (e.getSource().equals(search)) {
