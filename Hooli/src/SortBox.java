@@ -1,12 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class SortBox extends JComboBox implements ActionListener {
 	ArrayList<Application> list;
@@ -25,18 +23,21 @@ public class SortBox extends JComboBox implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		String getItem2 = (String)this.getSelectedItem();
+		String getItem = (String)this.getSelectedItem();
 		
-		if (getItem2.equals("Organization")) {
-			JOptionPane.showMessageDialog(frame, "Organization filter would be here");
+		if (getItem.equals("Name")) {
+			list.sort(Comparator.comparing(Application::getName));
 		}
-		if (getItem2.equals("Platform")) {
-			JOptionPane.showMessageDialog(frame, "Platform filter would be here");
+		if (getItem.equals("Publisher")) {
+			list.sort(Comparator.comparing(Application::getPublisher));
 		}
-		if (getItem2.equals("Genre")) {
-			JOptionPane.showMessageDialog(frame, "Genre filter would be here");
+		if (getItem.equals("Platform")) {
+			list.sort(Comparator.comparing(Application::getPlatform));
 		}
-
+		if (getItem.equals("Price")) {
+			list.sort(Comparator.comparing(Application::getPrice));
+		}
+		
 		frame.repaint();
 	}
 }
