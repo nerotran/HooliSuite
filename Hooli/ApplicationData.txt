@@ -1,7 +1,7 @@
-Ping Pong,Java,PC,Desc,100,https://www.google.com/,2002
-Solitaire,Linux,XBox,Desc,200,https://www.google.com/,2002
-Tetris,Microsoft,PC,Desc,55,https://www.google.com/,2002
-A,D,A,A,3,https://www.google.com,2001
-B,A,B,B,2,https://www.google.com,2000
-C,D,C,C,4,https://www.google.com,1999
-D,B,D,D,1,https://www.google.com,1998
+Ping Pong~Java~PC~Desc~100~https://www.google.com/~2002
+Solitaire~Linux~XBox~Desc~200~https://www.google.com/~2002
+Tetris~Microsoft~PC~Desc~55~https://www.google.com/~2002
+A~D~A~A~3~https://www.google.com~2001
+B~A~B~B~2~https://www.google.com~2000
+C~D~C~C~4~https://www.google.com~1999
+D~B~D~D~1~https://www.google.com~1998
