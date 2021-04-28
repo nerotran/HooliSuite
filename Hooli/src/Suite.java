@@ -7,10 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
@@ -39,6 +43,9 @@ public class Suite implements ActionListener,MouseListener {
 	ArrayList<Application> list;
 	ApplicationList<Application> appList;
 	private boolean loggedIn;
+	private JMenu about;
+	private JMenuItem aboutItem;
+	private JMenuItem helpItem;
 
 	public static void main(String[] args) {
 		File file = new File("comments");
@@ -52,6 +59,7 @@ public class Suite implements ActionListener,MouseListener {
 		list = FileReader.readAppFile("ApplicationData.txt");
 		list.sort(Comparator.comparing(Application::getName));
 		makeFrame();
+		makeMenuBar();
 		makePanel();
 		topPanel();
 		appList();
@@ -68,6 +76,19 @@ public class Suite implements ActionListener,MouseListener {
 		frame.setLayout(new BorderLayout());
 		frame.setBounds(50, 50, 800, 600);
 		frame.setResizable(true);
+	}
+	
+	public void makeMenuBar() {
+		JMenuBar jMBar = new JMenuBar();
+		about = new JMenu("About");
+		aboutItem = new JMenuItem("About HooliSuite");
+		aboutItem.addActionListener(this);
+		helpItem = new JMenuItem("Help");
+		helpItem.addActionListener(this);
+		about.add(aboutItem);
+		about.add(helpItem);
+		jMBar.add(about);
+		frame.setJMenuBar(jMBar);
 	}
 	
 	public void makePanel() {
@@ -154,6 +175,14 @@ public class Suite implements ActionListener,MouseListener {
 			
 			frame.repaint();
 			list = originalList;
+			
+		}
+
+		if (e.getSource().equals(helpItem)) {
+			System.out.println("Help");
+		}
+		if (e.getSource().equals(aboutItem)) {
+			System.out.println("about");
 		}
 
 	}
