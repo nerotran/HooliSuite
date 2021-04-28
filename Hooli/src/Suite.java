@@ -182,7 +182,8 @@ public class Suite implements ActionListener,MouseListener {
 			System.out.println("Help");
 		}
 		if (e.getSource().equals(aboutItem)) {
-			System.out.println("about");
+			AboutPage ap = new AboutPage();
+			
 		}
 
 	}
