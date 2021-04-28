@@ -5,11 +5,20 @@ import java.util.Comparator;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-
+/**
+ * Creates sort algorithm for application list
+ * @author joejanaskie
+ *
+ */
 public class SortBox extends JComboBox implements ActionListener {
 	ArrayList<Application> list;
 	JFrame frame;
 
+	/**
+	 * SortBox Constructor
+	 * @param list list of applications
+	 * @param frame frame for choices of what to sort list by
+	 */
 	public SortBox(ArrayList<Application> list, JFrame frame) {
 		this.list = list;
 		this.frame = frame;
@@ -20,6 +29,9 @@ public class SortBox extends JComboBox implements ActionListener {
 		this.addActionListener(this);
 	}
 
+	/**
+	 * Sorts based on what user chooses to sort by
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

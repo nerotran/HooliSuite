@@ -26,7 +26,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
-
+/**
+ * Suite Class
+ * @author joejanaskie
+ *
+ */
 public class Suite implements ActionListener,MouseListener {
 	
 	JFrame frame;
@@ -51,9 +55,10 @@ public class Suite implements ActionListener,MouseListener {
 		File file = new File("comments");
 		file.mkdirs();
 		new Suite();
-
 	}
-	
+	/**
+	 * Constructor
+	 */
 	public Suite() {
 		super();
 		list = FileReader.readAppFile("ApplicationData.txt");
@@ -70,7 +75,9 @@ public class Suite implements ActionListener,MouseListener {
 		loggedIn = false;
 	}
 	
-	
+	/**
+	 * Creates main frame
+	 */
 	public void makeFrame() {
 		frame = new JFrame("Hooli Suite");
 		frame.setLayout(new BorderLayout());
@@ -78,6 +85,9 @@ public class Suite implements ActionListener,MouseListener {
 		frame.setResizable(true);
 	}
 	
+	/**
+	 * Creates menu bar
+	 */
 	public void makeMenuBar() {
 		JMenuBar jMBar = new JMenuBar();
 		about = new JMenu("About");
@@ -90,7 +100,9 @@ public class Suite implements ActionListener,MouseListener {
 		jMBar.add(about);
 		frame.setJMenuBar(jMBar);
 	}
-	
+	/**
+	 * Create main panel for suite
+	 */
 	public void makePanel() {
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -98,6 +110,9 @@ public class Suite implements ActionListener,MouseListener {
 				BorderFactory.createEtchedBorder(), "Hooli Suite"));
 	}
 	
+	/**
+	 * Create top panel which includes search, login, sort buttons, etc.
+	 */
 	public void topPanel() {
 		JPanel topPanel = new JPanel();
         	    
@@ -127,6 +142,9 @@ public class Suite implements ActionListener,MouseListener {
 		panel.add(topPanel, BorderLayout.NORTH);
 	}
 	
+	/**
+	 * Makes applications visible in list
+	 */
 	public void appList() {
 		// Attempting to implement FileReader class
 		appList = new ApplicationList<Application>(list);
@@ -141,14 +159,25 @@ public class Suite implements ActionListener,MouseListener {
 		listScroll = new JScrollPane(listView);
 	}
 	
+	/**
+	 * Sets user's authorization
+	 * @param loggedIn sets value of whether user is logged in or not
+	 */
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
 	
+	/**
+	 * Returns logged in value
+	 * @return the value of whether the user is logged in
+	 */
 	public boolean getLoggedIn() {
 		return loggedIn;
 	}
 
+	/**
+	 * Adds functionality to buttons and other active listeners
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -188,6 +217,9 @@ public class Suite implements ActionListener,MouseListener {
 
 	}
 
+	/**
+	 * Need to click an application in the list twice
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
