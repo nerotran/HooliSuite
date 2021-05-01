@@ -1,8 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.GridLayout;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,6 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
@@ -22,6 +25,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -50,6 +55,17 @@ public class Suite implements ActionListener,MouseListener {
 	private JMenu about;
 	private JMenuItem aboutItem;
 	private JMenuItem helpItem;
+	private JTabbedPane tabs;
+	
+	private JButton entryAccept, entryDeny;
+	private JPanel entryPanel;
+	private JScrollPane entryScroll;
+	private JList<Application> entryView;
+	ArrayList<Application> entries;
+	ApplicationList<Application> entryList;
+	
+	//Permission level
+	public static int pLevel = 0;
 
 	public static void main(String[] args) {
 		File file = new File("comments");
@@ -63,13 +79,30 @@ public class Suite implements ActionListener,MouseListener {
 		super();
 		list = FileReader.readAppFile("ApplicationData.txt");
 		list.sort(Comparator.comparing(Application::getName));
+		
+		//Read entries requested from a text file
+		entries = FileReader.readAppFile("ApplicationData.txt");
+		entries.sort(Comparator.comparing(Application::getName));
+		
 		makeFrame();
 		makeMenuBar();
 		makePanel();
 		topPanel();
 		appList();
+		entryList();
+		
+		
+		tabs = new JTabbedPane();
+		tabs.addTab("Applications", listScroll);
+		tabs.addTab("Entries", entryPanel);
+		
+		//Disable the entries tab if not an admin
+		if (pLevel < 2) {
+			tabs.setEnabledAt(1, false);
+		}
+		
 		frame.add(panel, BorderLayout.NORTH);
-		frame.add(listScroll, BorderLayout.CENTER);
+		frame.add(tabs, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		loggedIn = false;
@@ -157,6 +190,27 @@ public class Suite implements ActionListener,MouseListener {
 		listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		listScroll = new JScrollPane(listView);
+	}
+	
+	/**
+	 * Makes requested entries visible in list
+	 */
+	public void entryList() {
+		entryPanel = new JPanel();
+		entryPanel.setLayout(new BoxLayout(entryPanel, BoxLayout.Y_AXIS));
+		entryList = new ApplicationList<Application>(entries);
+		
+		entryView = new JList<Application>(entryList);
+		entryView.addMouseListener(this);
+		entryView.setCellRenderer(new ApplicationCell());
+		entryView.setVisibleRowCount(1);
+		entryView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		entryAccept = new JButton("Accept");
+		
+		entryScroll = new JScrollPane(entryView);
+		entryPanel.add(entryScroll);
+		entryPanel.add(entryAccept);
 	}
 	
 	/**
