@@ -1,7 +1,9 @@
-Ping Pong~Java~PC~Desc~100~https://www.google.com/~2002
-Solitaire~Linux~XBox~Desc~200~https://www.google.com/~2002
-Tetris~Microsoft~PC~Desc~55~https://www.google.com/~2002
-A~D~A~A~3~https://www.google.com~2001
-B~A~B~B~2~https://www.google.com~2000
-C~D~C~C~4~https://www.google.com~1999
-D~B~D~D~1~https://www.google.com~1998
+Ark: Survival Evolved~Studio Wildcard~PC, XBox, PlayStation~Desc~49.99~https://store.steampowered.com/app/346110/ARK_Survival_Evolved/~8/27/2017
+Smite~Hi-Rez Studios~PC, XBox, PlayStation~Desc~0~https://store.steampowered.com/app/386360/SMITE/~9/8/2015
+Sekiro: Shadows Die Twice~FromSoftware~PC, XBox, PlayStation~Desc~59.99~https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/~3/21/2019
+Persona 5~Atlus~PlayStation 3, PlayStation 4~Desc~18.32~https://www.amazon.com/Persona-PlayStation-Hits-Standard-4/dp/B01GKHJP98?th=1~9/15/2016
+FIFA 21~EA Sports~PC, XBox, PlayStation, Nintendo Switch~Desc~19.99~https://www.bestbuy.com/site/fifa-21-standard-edition-playstation-4-playstation-5/6415352.p?skuId=6415352&ref=212&loc=1&ref=212&loc=1&gclid=Cj0KCQjw1a6EBhC0ARIsAOiTkrELmoV0d-KKcdswqiWp-nK_dAV-emngxpDiZ0XCG7JIxQKZMGf3lfYaAl8oEALw_wcB&gclsrc=aw.ds~10/9/2020
+Minecraft~Mojang~PC, XBox, PlayStation~Desc~26.95~https://www.minecraft.net/en-us/get-minecraft~11/18/2011
+Destiny 2~Bungie~Microsoft Windows, XBox One, PlayStation 4~Desc~0.0~https://www.bungie.net/7/en/Destiny/NewLight~9/6/2017
+Animal Crossing: New Horizons~Nintendo~Nintendo Switch~Desc~59.99~https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/~3/20/2020
+Genshin Impact~miHoYo~PC, PlayStation, iOS, Android~Desc~0.0~https://genshin.mihoyo.com/en/home~9/28/2020
