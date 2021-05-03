@@ -1,19 +1,21 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 /**
  * Creates the LoginPage that allows a user to enter in a username and password into textfields
  * Allows the user to interact with a sign in button or a create account button
  * CreateAccountPage pops up when the create account button is pressed
- * @author Hooli
+ * @author Corrina Martinez
  *
  */
 public class LoginPage extends JFrame implements ActionListener {
@@ -26,23 +28,24 @@ public class LoginPage extends JFrame implements ActionListener {
 	private JButton signIn;
 	private JButton createAccount;
 	
-	private String userInfo;
-	private String passInfo;
+	Map<String, String> userInfo;
+	
 	
 	/**
-	 * LoginPage Constructor
-	 */
+	* LoginPage Constructor
+	*/
 	public LoginPage() {
 		super("Login");
 		this.setBounds(250, 200, 400, 300);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+	    userInfo = Suite.pullUserInfo("UserInfo.csv");
 		buildPage();
 	}
 	
 	/**
-	 * Builds the LoginPage, adds all of the components to the JFrame
-	 */
+	* Builds the LoginPage, adds all of the components to the JFrame
+	*/
 	public void buildPage() {
 		panel = new JPanel();
 		GridLayout layout = new GridLayout(0,1);
@@ -69,24 +72,31 @@ public class LoginPage extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Validates a user's login information
-	 * @param user string for a username
-	 * @param pass string for a password
-	 * @return boolean 
-	 */
+	* Validates a user's login information
+	* @param user string for a username
+	* @param pass string for a password
+	* @return boolean 
+	*/
 	public boolean validateLogin(String user, String pass) {
+		if ((userInfo.containsKey(user)) && (userInfo.get(user).equals(pass))) {
+			return true;
+		}
+		JOptionPane.showMessageDialog(this, "Username and password do not belong to an existing account");
 		return false;
 	}
 
 	/**
-	 * ActionPerformer for signIn and createAccount button
-	 * If signIn is pressed, the LoginPage's visibility is set to false and disappears
-	 * If createAccount is pressed, CreateAccountPage pops up
-	 */
+	* ActionPerformer for signIn and createAccount button
+	* If signIn is pressed, the LoginPage's visibility is set to false and disappears
+	* If createAccount is pressed, CreateAccountPage pops up
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(signIn)) {
-			this.setVisible(false);
+			if (validateLogin(userField.getText(), passField.getText())) {
+				this.setVisible(false);
+				JOptionPane.showMessageDialog(this, "Login successful");
+			}
 		} else {
 			if (e.getSource().equals(createAccount)) {
 				this.setVisible(false);

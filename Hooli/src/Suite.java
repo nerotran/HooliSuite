@@ -28,8 +28,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 /**
  * Suite Class
@@ -214,6 +217,41 @@ public class Suite implements ActionListener,MouseListener {
 	}
 	
 	/**
+	 * Reads user data from a file and puts it into a map so that usernames and
+	 * passwords can be validated when logging in.
+	 * @param fileName the name of the file that holds user data as a string
+	 * @return a map of the user data with username as the key and password as the value
+	 */
+	public static Map<String, String> pullUserInfo(String fileName) {
+		File file = new File(fileName);
+		String userData = "";
+		Map<String, String> data = new HashMap<>();
+		try {
+			Scanner input = new Scanner(file);
+			if (input.hasNextLine()) {
+				input.nextLine();
+			}
+			while (input.hasNext()) {
+				userData = userData + input.next();
+			}
+			
+			// for testing purposes
+			System.out.println(userData);
+			
+			String[] userArray = userData.split(",");
+			for (int i = 0; i+1 < userArray.length; i+=2) {
+				data.put(userArray[i], userArray[i+1]);
+			}
+			
+			input.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+		
+		return data;
+	}
+	
+	/**
 	 * Sets user's authorization
 	 * @param loggedIn sets value of whether user is logged in or not
 	 */
@@ -261,6 +299,7 @@ public class Suite implements ActionListener,MouseListener {
 			
 		}
 
+		/*
 		if (e.getSource().equals(helpItem)) {
 			new HelpPage();
 		}
@@ -268,6 +307,7 @@ public class Suite implements ActionListener,MouseListener {
 			new AboutPage();
 			
 		}
+		*/
 
 	}
 
