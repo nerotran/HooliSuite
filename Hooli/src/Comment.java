@@ -23,4 +23,7 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String toString() {
+		return String.format("Author: %-40s Comment: %s", this.author, this.content);
+	}
 }
