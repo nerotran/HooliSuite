@@ -12,7 +12,7 @@ public class Application {
 	private double price;
 	private String link;
 	private Date date;
-	private ArrayList<Comment> comments;
+	public ArrayList<Comment> comments;
 	
 	public Application(String name, String publisher) {
 		this(name, publisher, "", "", 0, "", null);
@@ -68,8 +68,7 @@ public class Application {
 			result += link;
 		
 		result += " Released: ";
-		if (date != null)
-			result += getDate();
+		result += getDate();
 		
 		return result;
 	}
@@ -122,8 +121,11 @@ public class Application {
 		this.link = link;
 	}
 	
-	public Date getDate() {
-		return this.date;
+	public String getDate() {
+		if (this.date == null) {
+			return "";
+		}
+		return this.date.toString();
 	}
 	
 	public ArrayList<Comment> getComments() {
