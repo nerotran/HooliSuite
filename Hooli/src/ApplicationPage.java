@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -17,18 +18,23 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 public class ApplicationPage extends JFrame implements ActionListener, WindowListener {
 	private Application app;
 	private JLabel name, publisher, platform, description, price, date;
-	private JButton link;
+	private JButton link, delete;
 	private JPanel info;
 	private JTabbedPane tabs;
-	private JTextArea comments;
+	private JScrollPane comments;
+	private JList cListView;
+	private ApplicationList<Comment> cList;
 	private JTextArea commentBox;
+	private JPanel commentTab;
 	
 	public ApplicationPage(Application app) {
 		super();
@@ -75,15 +81,18 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		post.add(postButton);
 		postButton.addActionListener(this);
 		
-		comments = new JTextArea();
-		comments.setEditable(false);
-		
-		for (Comment c : app.getComments()) {
-			comments.append(String.format("Author: %s\n%s\n", c.getAuthor(), c.getContent()));
-		}
+		cList = new ApplicationList<Comment>(app.getComments());
+		cListView = new JList(cList);
+		comments = new JScrollPane(cListView);
+		commentTab = new JPanel();
+		commentTab.setLayout(new BoxLayout(commentTab, BoxLayout.Y_AXIS));
+		commentTab.add(comments);
+		delete = new JButton("Delete");
+		commentTab.add(delete);
+		delete.addActionListener(this);
 		
 		tabs = new JTabbedPane();
-		tabs.addTab("Comments", comments);
+		tabs.addTab("Comments", commentTab);
 		tabs.addTab("Post a comment", post);
 		
 		this.add(info, BorderLayout.NORTH);
@@ -119,11 +128,18 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 			}
 		}
 		
+		if (event.getActionCommand().equals("Delete")) {
+			Comment selectedItem = (Comment) cListView.getSelectedValue();
+			app.getComments().remove(selectedItem);
+			this.repaint();
+		}
+		
 		if (event.getActionCommand().equals("Post")) {
 			Comment temp = new Comment("Anonymous", commentBox.getText());
 			app.getComments().add(temp);
-			comments.append(String.format("Author: %s\n%s\n", temp.getAuthor(), temp.getContent()));
+			this.repaint();
 			commentBox.setText("");
+			comments.repaint();
 		}
 		
 		this.repaint();
@@ -133,7 +149,14 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 	@Override
 	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if (delete != null) {
+			if (Suite.pLevel < 1) {
+				delete.setEnabled(false);
+			}
+			else {
+				delete.setEnabled(true);
+			}
+		}
 	}
 
 	@Override
@@ -148,7 +171,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		PrintWriter out = null;
 		
 		try {
-			out = new PrintWriter(new File("comments\\" + app.getName() + ".comment"));
+			out = new PrintWriter(new FileOutputStream("comments\\" + app.getName() + ".comment", false));
 			for (Comment c : app.getComments()) {
 				out.write(String.format("%s,%s\n", c.getAuthor(), c.getContent()));
 			}
