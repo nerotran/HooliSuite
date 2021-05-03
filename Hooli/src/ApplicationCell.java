@@ -16,10 +16,10 @@ public class ApplicationCell extends JLabel implements ListCellRenderer<Applicat
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Application> list, Application value, int index,
 			boolean isSelected, boolean cellHasFocus) {
-		
+	
 		// TODO Auto-generated method stub
-		this.setText(String.format("%s by %s Price: %s Platform: %s", value.getName(), value.getPublisher(), value.getPrice(), 
-				value.getPlatform()));
+		this.setText(String.format("%-50s %s %s %s", value.getName(), "by " + value.getPublisher(),"Price: " +  value.getPrice(), 
+				"Platform : " + value.getPlatform()));
 		JList.DropLocation dropLocation = list.getDropLocation();
         if (dropLocation != null && !dropLocation.isInsert() && dropLocation.getIndex() == index) {
             background = Color.BLUE;
