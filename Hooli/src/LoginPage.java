@@ -9,7 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+/**
+ * Creates the LoginPage that allows a user to enter in a username and password into textfields
+ * Allows the user to interact with a sign in button or a create account button
+ * CreateAccountPage pops up when the create account button is pressed
+ * @author Hooli
+ *
+ */
 public class LoginPage extends JFrame implements ActionListener {
 	
 	private JPanel panel;
@@ -23,6 +29,9 @@ public class LoginPage extends JFrame implements ActionListener {
 	private String userInfo;
 	private String passInfo;
 	
+	/**
+	 * LoginPage Constructor
+	 */
 	public LoginPage() {
 		super("Login");
 		this.setBounds(250, 200, 400, 300);
@@ -31,6 +40,9 @@ public class LoginPage extends JFrame implements ActionListener {
 		buildPage();
 	}
 	
+	/**
+	 * Builds the LoginPage, adds all of the components to the JFrame
+	 */
 	public void buildPage() {
 		panel = new JPanel();
 		GridLayout layout = new GridLayout(0,1);
@@ -56,10 +68,21 @@ public class LoginPage extends JFrame implements ActionListener {
 		this.add(panel);
 	}
 	
+	/**
+	 * Validates a user's login information
+	 * @param user string for a username
+	 * @param pass string for a password
+	 * @return boolean 
+	 */
 	public boolean validateLogin(String user, String pass) {
 		return false;
 	}
 
+	/**
+	 * ActionPerformer for signIn and createAccount button
+	 * If signIn is pressed, the LoginPage's visibility is set to false and disappears
+	 * If createAccount is pressed, CreateAccountPage pops up
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(signIn)) {
