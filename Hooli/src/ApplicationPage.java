@@ -61,7 +61,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		platform = new JLabel("Platform: " + this.app.getPlatform());
 		info.add(platform);
 
-		price = new JLabel("Price: " + this.app.getPrice());
+		price = new JLabel("Price: $" + this.app.getPrice());
 		info.add(price);
 			
 		date = new JLabel("Released: " + this.app.getDate());
@@ -83,6 +83,8 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		JPanel post = new JPanel();
 		post.setLayout(new BoxLayout(post, BoxLayout.Y_AXIS));
 		commentBox = new JTextArea(20,70);
+		commentBox.setLineWrap(true);
+		commentBox.setWrapStyleWord(true);
 		post.add(commentBox);
 		JButton postButton = new JButton("Post");
 		post.add(postButton);
