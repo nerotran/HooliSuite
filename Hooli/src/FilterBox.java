@@ -23,6 +23,11 @@ public class FilterBox extends JComboBox implements ActionListener {
 	JPanel fPanel;
 	static String filter, filterWord;
 	
+	/**
+	 * Filter 
+	 * @param list
+	 * @param s
+	 */
 	public FilterBox(ArrayList<Application> list, Suite s) {
 		this.s = s;
 		this.OriginalList = list;
@@ -36,6 +41,10 @@ public class FilterBox extends JComboBox implements ActionListener {
 	}
 	
 	class AddFSearchListener implements ActionListener {
+		
+		/**
+		 * Action listener to implement filter to search bar
+		 */
 		public void actionPerformed(ActionEvent event) {
 			filterWord = fSearchBar.getText();
 			if (filter.equals("Publisher")) {
@@ -60,6 +69,9 @@ public class FilterBox extends JComboBox implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Filter constructor
+	 */
 	public FilterBox() {
 		super(); 
 		JFrame barFrame = new JFrame("Filter");
@@ -84,7 +96,9 @@ public class FilterBox extends JComboBox implements ActionListener {
 		barFrame.setVisible(true);
 	}
 	
-	
+	/**
+	 * Action listener for parameter of filter to be displayed
+	 */
 	public void actionPerformed(ActionEvent e) {
 		String getItem2 = (String)this.getSelectedItem();
 		
