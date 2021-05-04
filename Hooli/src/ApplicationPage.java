@@ -51,7 +51,6 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 	private void graphics() {
 		info = new JPanel();
 		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
-		info.setSize(800, 600);
 		
 		name = new JLabel("Name: " + this.app.getName());
 		info.add(name);
@@ -75,13 +74,14 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		descLabel = new JLabel("Description: ");
 		info.add(descLabel);
 		
-		description = new JTextArea(5,1);
+		description = new JTextArea(1,1);
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);
 		description.setText(app.getDescription());
 		description.setEditable(false);
 		
 		JPanel post = new JPanel();
+		post.setLayout(new BoxLayout(post, BoxLayout.Y_AXIS));
 		commentBox = new JTextArea(20,70);
 		post.add(commentBox);
 		JButton postButton = new JButton("Post");
