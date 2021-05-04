@@ -1,4 +1,4 @@
 Username, Password ,Permission
-claryventure,seekingAdventure,user
-cmartinez42,Password12,user
-marti730,pSsWrD,user
+claryventure,seekingAdventure,admin,
+cmartinez42,Password12,user,
+marti730,pSsWrD,user,
