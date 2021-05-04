@@ -40,7 +40,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		super();
 		this.app = app;
 		this.setLayout(new BorderLayout());
-		this.setBounds(50, 50, 800, 600);
+		this.setBounds(50, 50, 800, 650);
 		this.setResizable(true);
 		this.setAlwaysOnTop(true);
 		this.addWindowListener(this);
@@ -74,7 +74,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		descLabel = new JLabel("Description: ");
 		info.add(descLabel);
 		
-		description = new JTextArea(1,1);
+		description = new JTextArea();
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);
 		description.setText(app.getDescription());
