@@ -1,0 +1,16 @@
+1. PERMISSIONS:
+GUEST: Can search, filter, and sort applications. Can look at
+individual applications and their information.
+USER: Has GUEST permissions and can request to add applications
+to the repository. Can post comments for individual applications.
+MODERATOR: Has USER permissions and can delete comments on an application.
+
+2.  FEATURES:
+SEARCH: Can search for an application's name, platform, and publisher.
+FILTER: Can filter by publisher and platform.
+SORT: Can sort by name, publisher, platfrom, and price.
+CREATE ACCOUNT: Can create an account so that a guest can gain USER permissions.
+LOGIN: Log in to gain access to your account
+REQUEST TO ADD: USERS can request to add applications to Hooli Suite
+LINKS: Links of games are provided for customer to easily download game.
+COMMENTS: USERS can add comments to games to leave feedback on a game.

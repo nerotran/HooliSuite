@@ -1,0 +1,10 @@
+Welcome to Hooli Suite!
+
+Hooli Suite is a game repository that stores
+user desired games. Sign up to comment and request
+to add games. Enjoy!
+
+Created by Corrina Martinez, Jasmine Lam, 
+Joe Janaskie, Nero Tran Huu, and Scott Williams
+
+Copyright 2021
