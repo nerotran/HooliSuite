@@ -11,38 +11,38 @@ public class Application {
 	private String description;
 	private double price;
 	private String link;
-	private Date date;
+	private String release;
 	public ArrayList<Comment> comments;
 	
 	public Application(String name, String publisher) {
-		this(name, publisher, "", "", 0, "", null);
+		this(name, publisher, "", "", 0, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform) {
-		this(name, publisher, platform, "", 0, "", null);
+		this(name, publisher, platform, "", 0, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description) {
-		this(name, publisher, platform, description, 0, "", null);
+		this(name, publisher, platform, description, 0, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price) {
-		this(name, publisher, platform, description, price, "", null);
+		this(name, publisher, platform, description, price, "", "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link) {
-		this(name, publisher, platform, description, price, link, null);
+		this(name, publisher, platform, description, price, link, "");
 	}
 	
 	public Application(String name, String publisher, String platform, String description, double price, String link,
-			Date date) {
+			String release) {
 		this.name = name;
 		this.publisher = publisher;
 		this.platform = platform;
 		this.description = description;
 		this.price = price;
 		this.link = link;
-		this.date = date;
+		this.release = release;
 		comments = new ArrayList<Comment>();
 		readFromFile();
 	}
@@ -67,8 +67,7 @@ public class Application {
 		if (link != null)
 			result += link;
 		
-		result += " Released: ";
-		result += getDate();
+		result += " Released: " + release;
 		
 		return result;
 	}
@@ -122,18 +121,15 @@ public class Application {
 	}
 	
 	public String getDate() {
-		if (this.date == null) {
-			return "";
-		}
-		return this.date.toString();
+		return release;
 	}
 	
 	public ArrayList<Comment> getComments() {
 		return comments;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(String release) {
+		this.release = release;
 	}
 	
 	public void readFromFile() {
