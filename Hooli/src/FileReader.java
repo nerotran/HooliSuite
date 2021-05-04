@@ -12,10 +12,10 @@ public class FileReader extends Reader {
 	
 	/**
 	 * Reads from a file and turns the lines into application objects
-	 * @param csvFile The file to read
+	 * @param inputFile The file to read
 	 * @return an array list of application objects read from the file
 	 */
-	public static ArrayList<Application> readAppFile(String csvFile) {
+	public static ArrayList<Application> readAppFile(String inputFile) {
 		ArrayList<Application> arrlist = new ArrayList<Application>();
 		try {
 			File file = new File("ApplicationData.txt");
@@ -36,7 +36,8 @@ public class FileReader extends Reader {
 				double price = Double.parseDouble(tempPrice);
 				String link = tempStr.substring(0, tempStr.indexOf("~"));
 				tempStr = tempStr.substring(tempStr.indexOf("~") + 1);
-				Application temp = new Application(name, publisher, platform, desc, price, link);
+				String release = tempStr.substring(0);
+				Application temp = new Application(name, publisher, platform, desc, price, link, release);
 				arrlist.add(temp);
 			}
 			
