@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 
@@ -8,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -42,6 +44,7 @@ import java.util.Scanner;
 public class Suite implements ActionListener,MouseListener {
 	
 	JFrame frame;
+	private JLabel user;
 	private JPanel panel;
 	private JTextField searchBar;
 	private JComboBox filter;
@@ -67,8 +70,10 @@ public class Suite implements ActionListener,MouseListener {
 	ArrayList<Application> entries;
 	ApplicationList<Application> entryList;
 	
+	//username
+	public static String username = "Anonymous";
 	//Permission level
-	public static int pLevel = 3;
+	public static int pLevel = 0;
 
 	public static void main(String[] args) {
 		File file = new File("comments");
@@ -100,7 +105,7 @@ public class Suite implements ActionListener,MouseListener {
 		tabs.addTab("Entries", entryPanel);
 		
 		//Disable the entries tab if not an admin
-		if (pLevel < 2) {
+		if (pLevel < 3) {
 			tabs.setEnabledAt(1, false);
 		}
 		
@@ -174,6 +179,28 @@ public class Suite implements ActionListener,MouseListener {
 		addEntry = new JButton("Add Entry");
 		addEntry.addActionListener(this);
 		topPanel.add(addEntry);
+		
+		user = new JLabel();
+		switch (pLevel) {
+			case 0:
+				user.setText(username + "(Guest)");
+				user.setForeground(Color.GRAY);
+				break;
+			case 1:
+				user.setText(username + "(User)");
+				break;
+			case 2:
+				user.setText(username + "(Moderator)");
+				user.setForeground(Color.BLUE);
+				break;
+			case 3:
+				user.setText(username + "(Admin)");
+				user.setForeground(Color.RED);
+				break;
+		}
+		
+		user.setFont(user.getFont().deriveFont(20.0f));
+		topPanel.add(user);
 
 		panel.add(topPanel, BorderLayout.NORTH);
 	}
