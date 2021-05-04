@@ -40,6 +40,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    userInfo = Suite.pullUserInfo("UserInfo.csv");
+	    	 
 		buildPage();
 	}
 	
@@ -100,6 +101,7 @@ public class LoginPage extends JFrame implements ActionListener {
 			if (validateLogin(userField.getText(), passField.getText())) {
 				Suite.setUsername(userField.getText());
 				Suite.setPLevel(level);
+				Suite.updateUser();
 				this.setVisible(false);
 				JOptionPane.showMessageDialog(this, "Login successful");
 			}

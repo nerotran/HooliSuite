@@ -46,13 +46,13 @@ import java.util.TreeSet;
  */
 public class Suite implements ActionListener,MouseListener {
 	
-	JFrame frame;
-	private JLabel user;
+	static JFrame frame;
+	private static JLabel user;
 	private JPanel panel;
 	private JTextField searchBar;
 	private JComboBox filter;
 	private SortBox sort;
-	private JButton login;
+	private static JButton login;
 	private JButton search;
 	private JButton addEntry;
 	private JScrollPane listScroll;
@@ -63,7 +63,7 @@ public class Suite implements ActionListener,MouseListener {
 	private JMenu about;
 	private JMenuItem aboutItem;
 	private JMenuItem helpItem;
-	private JTabbedPane tabs;
+	private static JTabbedPane tabs;
 	
 	private JButton entryAccept, entryDeny;
 	private JPanel entryPanel;
@@ -97,19 +97,15 @@ public class Suite implements ActionListener,MouseListener {
 		makeFrame();
 		makeMenuBar();
 		makePanel();
-		topPanel();
 		appList();
 		entryList();
-		
-		
 		tabs = new JTabbedPane();
 		tabs.addTab("Applications", listScroll);
 		tabs.addTab("Entries", entryPanel);
+		topPanel();
 		
 		//Disable the entries tab if not an admin
-		if (pLevel < 3) {
-			tabs.setEnabledAt(1, false);
-		}
+		
 		
 		frame.add(panel, BorderLayout.NORTH);
 		frame.add(tabs, BorderLayout.CENTER);
@@ -182,23 +178,7 @@ public class Suite implements ActionListener,MouseListener {
 		topPanel.add(addEntry);
 		
 		user = new JLabel();
-		switch (pLevel) {
-			case 0:
-				user.setText(username + "(Guest)");
-				user.setForeground(Color.GRAY);
-				break;
-			case 1:
-				user.setText(username + "(User)");
-				break;
-			case 2:
-				user.setText(username + "(Moderator)");
-				user.setForeground(Color.BLUE);
-				break;
-			case 3:
-				user.setText(username + "(Admin)");
-				user.setForeground(Color.RED);
-				break;
-		}
+		updateUser();
 		
 		user.setFont(user.getFont().deriveFont(20.0f));
 		topPanel.add(user);
@@ -315,6 +295,41 @@ public class Suite implements ActionListener,MouseListener {
 	public static String getUsername() {
 		return username;
 	}
+	
+	public static void updateUser() {
+		switch (pLevel) {
+		case 0:
+			user.setText(username + "(Guest)");
+			user.setForeground(Color.GRAY);
+			break;
+		case 1:
+			user.setText(username + "(User)");
+			user.setForeground(Color.BLACK);
+			break;
+		case 2:
+			user.setText(username + "(Moderator)");
+			user.setForeground(Color.BLUE);
+			break;
+		case 3:
+			user.setText(username + "(Admin)");
+			user.setForeground(Color.RED);
+			break;
+		}
+		
+		if (pLevel > 0) {
+			login.setEnabled(false);
+		}
+		
+		if (pLevel < 3) {
+			tabs.setEnabledAt(1, false);
+		} else {
+			tabs.setEnabledAt(1,true);
+		}
+		
+		frame.validate();
+		frame.repaint();
+		
+	}
 
 	/**
 	 * Adds functionality to buttons and other active listeners
@@ -347,6 +362,7 @@ public class Suite implements ActionListener,MouseListener {
 			list = originalList;
 			
 		}
+		
 
 		/*
 		if (e.getSource().equals(helpItem)) {
