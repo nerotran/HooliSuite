@@ -1,16 +1,27 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-public class ApplicationCell extends JLabel implements ListCellRenderer<Application> {
+public class ApplicationCell extends JPanel implements ListCellRenderer<Application> {
 	Color background;
 	Color foreground;
+	private JLabel name, publisher, price, platform;
 	
 	public ApplicationCell() {
-		setOpaque(true);
+		this.setLayout(new GridLayout(1,4));
+		name = new JLabel();
+		publisher = new JLabel();
+		price = new JLabel();
+		platform = new JLabel();
+		this.add(name);
+        this.add(publisher);
+        this.add(price);
+        this.add(platform);
 	}
 
 	@Override
@@ -18,8 +29,12 @@ public class ApplicationCell extends JLabel implements ListCellRenderer<Applicat
 			boolean isSelected, boolean cellHasFocus) {
 	
 		// TODO Auto-generated method stub
-		this.setText(String.format("%-30s %-20s %-20s %-20s", value.getName(), "by " + value.getPublisher(),"Price: " +  value.getPrice(), 
-				"Platform : " + value.getPlatform()));
+		name.setText(value.getName());
+		publisher.setText(value.getPublisher());
+		price.setText("$" + value.getPrice());
+		platform.setText(value.getPlatform());
+
+        
 		JList.DropLocation dropLocation = list.getDropLocation();
         if (dropLocation != null && !dropLocation.isInsert() && dropLocation.getIndex() == index) {
             background = Color.BLUE;
@@ -36,7 +51,24 @@ public class ApplicationCell extends JLabel implements ListCellRenderer<Applicat
 
         this.setBackground(background);
         this.setForeground(foreground);
-        this.setFont(this.getFont().deriveFont(15.0f));
+        
+        name.setBackground(background);
+        name.setForeground(foreground);
+        name.setFont(name.getFont().deriveFont(15.0f));
+        
+        publisher.setBackground(background);
+        publisher.setForeground(foreground);
+        publisher.setFont(publisher.getFont().deriveFont(15.0f));
+        
+        price.setBackground(background);
+        price.setForeground(foreground);
+        price.setFont(price.getFont().deriveFont(15.0f));
+        
+        platform.setBackground(background);
+        platform.setForeground(foreground);
+        platform.setFont(platform.getFont().deriveFont(15.0f));
+        
+        
 
         return this;
 	}
