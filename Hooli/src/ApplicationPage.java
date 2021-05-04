@@ -26,14 +26,14 @@ import javax.swing.JTextArea;
 
 public class ApplicationPage extends JFrame implements ActionListener, WindowListener {
 	private Application app;
-	private JLabel name, publisher, platform, description, price, date;
+	private JLabel name, publisher, platform, price, date, descLabel;
 	private JButton link, delete;
 	private JPanel info;
 	private JTabbedPane tabs;
 	private JScrollPane comments;
 	private JList cListView;
 	private ApplicationList<Comment> cList;
-	private JTextArea commentBox;
+	private JTextArea commentBox, description;
 	private JPanel commentTab;
 	
 	public ApplicationPage(Application app) {
@@ -51,6 +51,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 	private void graphics() {
 		info = new JPanel();
 		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+		info.setSize(800, 600);
 		
 		name = new JLabel("Name: " + this.app.getName());
 		info.add(name);
@@ -71,8 +72,14 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		link.addActionListener(this);
 		info.add(link);
 		
-		description = new JLabel("Description: " + this.app.getDescription());
-		info.add(description);
+		descLabel = new JLabel("Description: ");
+		info.add(descLabel);
+		
+		description = new JTextArea(5,1);
+		description.setLineWrap(true);
+		description.setWrapStyleWord(true);
+		description.setText(app.getDescription());
+		description.setEditable(false);
 		
 		JPanel post = new JPanel();
 		commentBox = new JTextArea(20,70);
@@ -96,7 +103,8 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		tabs.addTab("Post a comment", post);
 		
 		this.add(info, BorderLayout.NORTH);
-		this.add(tabs, BorderLayout.CENTER);
+		this.add(description, BorderLayout.CENTER);
+		this.add(tabs, BorderLayout.SOUTH);
 		
 		
 
