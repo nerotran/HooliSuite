@@ -1,10 +1,8 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
+import java.util.Set;
 
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,8 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 /**
  * Creates the LoginPage that allows a user to enter in a username and password into textfields
  * Allows the user to interact with a sign in button or a create account button
@@ -31,7 +27,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	private JButton signIn;
 	private JButton createAccount;
 	
-	Map<Pair<String, String>, String> userInfo;
+	Set<User> userInfo;
 	
 	
 	/**
@@ -80,8 +76,8 @@ public class LoginPage extends JFrame implements ActionListener {
 	* @param pass string for a password
 	* @return boolean 
 	*/
-	public boolean validateLogin(Pair<String, String> user) {
-		if ((userInfo.containsKey(user))) {
+	public boolean validateLogin(User user) {
+		if (userInfo.contains(user)) {
 			return true;
 		}
 		JOptionPane.showMessageDialog(this, "Username and password do not belong to an existing account");
@@ -96,8 +92,8 @@ public class LoginPage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(signIn)) {
-			Pair<String, String> p = new ImmutablePair<>(userField.getText(), passField.getText());
-			if (validateLogin(p)) {
+			User user = new User(userField.getText(), passField.getText());
+			if (validateLogin(user)) {
 				this.setVisible(false);
 				JOptionPane.showMessageDialog(this, "Login successful");
 			}

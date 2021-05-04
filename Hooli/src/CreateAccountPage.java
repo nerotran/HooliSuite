@@ -4,10 +4,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Scanner;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -16,9 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 
 public class CreateAccountPage extends JFrame implements ActionListener {
 	private JPanel panel;
@@ -29,7 +22,7 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 	private JTextField passField;
 	private JTextField retypeField;
 	private JButton create;
-	Map<Pair<String, String>, String> userInfo;
+	Set<User> userInfo;
 	
 	public CreateAccountPage() {
 		super("Create An Account");
@@ -40,15 +33,14 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 		build();
 	}
 	
-	public void writeToFile(String fileName, Map<Pair<String, String>, String> info) {
+	public void writeToFile(String fileName, Set<User> info) {
 		File file = new File(fileName);
 		try {
 			PrintWriter output = new PrintWriter(file);
 			output.append("Username, Password, Permission \n");
 			
-			Set<Entry<Pair<String, String>, String>> infoSet = info.entrySet();
-			for (Entry<Pair<String, String>, String> entry : infoSet) {
-				output.append(entry.getKey().getLeft() + "," + entry.getKey().getRight() + "," + entry.getValue() + ",\n");
+			for (User entry : info) {
+				output.append(entry.getUsername() + "," + entry.getPassword() + "," + convertPermission(entry.getPermission()) + ",\n");
 			}
 			
 			output.close();
@@ -56,6 +48,21 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 			System.out.println("File not found");
 		}
 		
+	}
+	
+	public static String convertPermission(int level) {
+		if (level == 1) {
+			return "user";
+		} else {
+			if (level == 2) {
+				return "mod";
+			} else {
+				if (level == 3) {
+					return "admin";
+				}
+			}
+		}
+		return "user";
 	}
 	
 	public void build() {
@@ -102,10 +109,12 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 	}
 	
 	public boolean userNameAvailable(String user) {
-		if (userInfo.containsKey(user.toLowerCase())) { //username is not case sensitive
-			JOptionPane.showMessageDialog(this, "This username is taken");
-			return false;
-		} 
+		for (User entry : userInfo) {
+			if (entry.getUsername().equals(user.toLowerCase())) { //username is not case sensitive
+				JOptionPane.showMessageDialog(this, "This username is taken");
+				return false;
+			}
+		}
 		
 		return true;
 	}
@@ -116,8 +125,8 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 			if (!textFieldEmpty(userField.getText(), passField.getText(), retypeField.getText())) {
 				if (userNameAvailable(userField.getText())) {
 					if (passwordsMatch(passField.getText(), retypeField.getText())) {
-						Pair<String, String> p = new ImmutablePair<>(userField.getText().toLowerCase(), passField.getText());
-						userInfo.put(p, "user");
+						User user = new User(userField.getText().toLowerCase(), passField.getText());
+						userInfo.add(user);
 						writeToFile("UserInfo.csv", userInfo);
 						this.setVisible(false);
 						JOptionPane.showMessageDialog(this, "Account successfully created");

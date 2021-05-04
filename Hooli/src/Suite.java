@@ -23,9 +23,6 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -37,8 +34,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * Suite Class
  * @author joejanaskie
@@ -252,10 +252,10 @@ public class Suite implements ActionListener,MouseListener {
 	 * @param fileName the name of the file that holds user data as a string
 	 * @return a map of the user data with username as the key and password as the value
 	 */
-	public static Map<Pair<String, String>, String> pullUserInfo(String fileName) {
+	public static Set<User> pullUserInfo(String fileName) {
 		File file = new File(fileName);
 		String userData = "";
-		Map<Pair<String, String>, String> data = new HashMap<>();
+		Set<User> data = new TreeSet<>();
 		try {
 			Scanner input = new Scanner(file);
 			if (input.hasNextLine()) {
@@ -270,8 +270,10 @@ public class Suite implements ActionListener,MouseListener {
 			
 			String[] userArray = userData.split(",");
 			for (int i = 0; i+2 < userArray.length; i+=3) {
-				Pair<String, String> p = new ImmutablePair<>(userArray[i], userArray[i+1]);
-				data.put(p, userArray[i+2]);
+				User user = new User(userArray[i], userArray[i+1]);
+				pLevel = convertLevel(userArray[i+2]);
+				user.updatePermission(pLevel);
+				data.add(user);
 			}
 			
 			input.close();
@@ -280,6 +282,24 @@ public class Suite implements ActionListener,MouseListener {
 		}
 		
 		return data;
+	}
+	
+	public static int convertLevel(String level) {
+		if (level.equals("user")) {
+			pLevel = 1;
+		} else {
+			if (level.equals("mod")) {
+				pLevel = 2;
+			} else {
+				if (level.equals("admin")) {
+					pLevel = 3;
+				} else {
+					pLevel = 1;
+				}
+			}
+		}
+		
+		return pLevel;
 	}
 	
 	/**
