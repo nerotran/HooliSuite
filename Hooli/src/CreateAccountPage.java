@@ -17,6 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 public class CreateAccountPage extends JFrame implements ActionListener {
 	private JPanel panel;
 	private JLabel userName;
@@ -26,7 +29,7 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 	private JTextField passField;
 	private JTextField retypeField;
 	private JButton create;
-	Map<String, String> userInfo;
+	Map<Pair<String, String>, String> userInfo;
 	
 	public CreateAccountPage() {
 		super("Create An Account");
@@ -37,15 +40,15 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 		build();
 	}
 	
-	public void writeToFile(String fileName, Map<String, String> info) {
+	public void writeToFile(String fileName, Map<Pair<String, String>, String> info) {
 		File file = new File(fileName);
 		try {
 			PrintWriter output = new PrintWriter(file);
-			output.append("Username, Password \n");
+			output.append("Username, Password, Permission \n");
 			
-			Set<Entry<String, String>> infoSet = info.entrySet();
-			for (Entry<String, String> entry : infoSet) {
-				output.append(entry.getKey() + "," + entry.getValue() + ",\n");
+			Set<Entry<Pair<String, String>, String>> infoSet = info.entrySet();
+			for (Entry<Pair<String, String>, String> entry : infoSet) {
+				output.append(entry.getKey().getLeft() + "," + entry.getKey().getRight() + "," + entry.getValue() + ",\n");
 			}
 			
 			output.close();
@@ -113,7 +116,8 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 			if (!textFieldEmpty(userField.getText(), passField.getText(), retypeField.getText())) {
 				if (userNameAvailable(userField.getText())) {
 					if (passwordsMatch(passField.getText(), retypeField.getText())) {
-						userInfo.put(userField.getText().toLowerCase(), passField.getText());
+						Pair<String, String> p = new ImmutablePair<>(userField.getText().toLowerCase(), passField.getText());
+						userInfo.put(p, "user");
 						writeToFile("UserInfo.csv", userInfo);
 						this.setVisible(false);
 						JOptionPane.showMessageDialog(this, "Account successfully created");

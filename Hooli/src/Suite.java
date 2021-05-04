@@ -21,6 +21,9 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -222,10 +225,10 @@ public class Suite implements ActionListener,MouseListener {
 	 * @param fileName the name of the file that holds user data as a string
 	 * @return a map of the user data with username as the key and password as the value
 	 */
-	public static Map<String, String> pullUserInfo(String fileName) {
+	public static Map<Pair<String, String>, String> pullUserInfo(String fileName) {
 		File file = new File(fileName);
 		String userData = "";
-		Map<String, String> data = new HashMap<>();
+		Map<Pair<String, String>, String> data = new HashMap<>();
 		try {
 			Scanner input = new Scanner(file);
 			if (input.hasNextLine()) {
@@ -239,8 +242,9 @@ public class Suite implements ActionListener,MouseListener {
 			System.out.println(userData);
 			
 			String[] userArray = userData.split(",");
-			for (int i = 0; i+1 < userArray.length; i+=2) {
-				data.put(userArray[i], userArray[i+1]);
+			for (int i = 0; i+2 < userArray.length; i+=3) {
+				Pair<String, String> p = new ImmutablePair<>(userArray[i], userArray[i+1]);
+				data.put(p, userArray[i+2]);
 			}
 			
 			input.close();
