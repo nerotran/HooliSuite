@@ -91,8 +91,8 @@ public class Suite implements ActionListener,MouseListener {
 		list.sort(Comparator.comparing(Application::getName));
 		
 		//Read entries requested from a text file
-		entries = FileReader.readAppFile("ApplicationData.txt");
-		entries.sort(Comparator.comparing(Application::getName));
+		entries = FileReader.readAppFile("Request.txt");
+		list.sort(Comparator.comparing(Application::getName));
 		
 		makeFrame();
 		makeMenuBar();
@@ -101,7 +101,7 @@ public class Suite implements ActionListener,MouseListener {
 		entryList();
 		tabs = new JTabbedPane();
 		tabs.addTab("Applications", listScroll);
-		tabs.addTab("Entries", entryPanel);
+		tabs.addTab("Requests", entryPanel);
 		topPanel();
 		
 		//Disable the entries tab if not an admin
@@ -218,10 +218,12 @@ public class Suite implements ActionListener,MouseListener {
 		entryView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		entryAccept = new JButton("Accept");
+		entryDeny = new JButton("Deny");
 		
 		entryScroll = new JScrollPane(entryView);
 		entryPanel.add(entryScroll);
 		entryPanel.add(entryAccept);
+		entryPanel.add(entryDeny);
 	}
 	
 	/**
@@ -362,9 +364,7 @@ public class Suite implements ActionListener,MouseListener {
 			list = originalList;
 			
 		}
-		
 
-		/*
 		if (e.getSource().equals(helpItem)) {
 			new HelpPage();
 		}
@@ -372,7 +372,6 @@ public class Suite implements ActionListener,MouseListener {
 			new AboutPage();
 			
 		}
-		*/
 
 	}
 
