@@ -18,7 +18,7 @@ public class FileReader extends Reader {
 	public static ArrayList<Application> readAppFile(String inputFile) {
 		ArrayList<Application> arrlist = new ArrayList<Application>();
 		try {
-			File file = new File("ApplicationData.txt");
+			File file = new File(inputFile);
 			Scanner scanner = new Scanner(file);
 			
 			while (scanner.hasNext()) {
@@ -48,7 +48,7 @@ public class FileReader extends Reader {
 	
 		return arrlist;
 	}
-
+	
 	/**
 	 * Unimplemented override method
 	 */
