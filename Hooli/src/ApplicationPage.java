@@ -160,7 +160,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		if (delete != null) {
-			if (Suite.pLevel < 1) {
+			if (Suite.pLevel < 2) {
 				delete.setEnabled(false);
 			}
 			else {
