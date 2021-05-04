@@ -68,7 +68,7 @@ public class Suite implements ActionListener,MouseListener {
 	ApplicationList<Application> entryList;
 	
 	//Permission level
-	public static int pLevel = 0;
+	public static int pLevel = 3;
 
 	public static void main(String[] args) {
 		File file = new File("comments");
@@ -117,7 +117,7 @@ public class Suite implements ActionListener,MouseListener {
 	public void makeFrame() {
 		frame = new JFrame("Hooli Suite");
 		frame.setLayout(new BorderLayout());
-		frame.setBounds(50, 50, 800, 600);
+		frame.setBounds(50, 50, 1280, 720);
 		frame.setResizable(true);
 	}
 	
