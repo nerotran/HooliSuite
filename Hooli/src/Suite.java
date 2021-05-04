@@ -60,7 +60,6 @@ public class Suite implements ActionListener,MouseListener {
 	ArrayList<Application> originalList;
 	ArrayList<Application> list;
 	ApplicationList<Application> appList;
-	private boolean loggedIn;
 	private JMenu about;
 	private JMenuItem aboutItem;
 	private JMenuItem helpItem;
@@ -116,7 +115,6 @@ public class Suite implements ActionListener,MouseListener {
 		frame.add(tabs, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		loggedIn = false;
 	}
 	
 	/**
@@ -255,7 +253,7 @@ public class Suite implements ActionListener,MouseListener {
 	public static Set<User> pullUserInfo(String fileName) {
 		File file = new File(fileName);
 		String userData = "";
-		Set<User> data = new TreeSet<>();
+		Set<User> data = new HashSet<>();
 		try {
 			Scanner input = new Scanner(file);
 			if (input.hasNextLine()) {
@@ -302,20 +300,20 @@ public class Suite implements ActionListener,MouseListener {
 		return pLevel;
 	}
 	
-	/**
-	 * Sets user's authorization
-	 * @param loggedIn sets value of whether user is logged in or not
-	 */
-	public void setLoggedIn(boolean loggedIn) {
-		this.loggedIn = loggedIn;
+	public static void setPLevel(int level) {
+		pLevel = level;
 	}
 	
-	/**
-	 * Returns logged in value
-	 * @return the value of whether the user is logged in
-	 */
-	public boolean getLoggedIn() {
-		return loggedIn;
+	public static int getPLevel() {
+		return pLevel;
+	}
+	
+	public static void setUsername(String name) {
+		username = name;
+	}
+	
+	public static String getUsername() {
+		return username;
 	}
 
 	/**

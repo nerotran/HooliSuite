@@ -26,6 +26,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	private JTextField passField;
 	private JButton signIn;
 	private JButton createAccount;
+	int level = 0;
 	
 	Set<User> userInfo;
 	
@@ -76,10 +77,14 @@ public class LoginPage extends JFrame implements ActionListener {
 	* @param pass string for a password
 	* @return boolean 
 	*/
-	public boolean validateLogin(User user) {
-		if (userInfo.contains(user)) {
-			return true;
+	public boolean validateLogin(String user, String password) {
+		for (User entry : userInfo) {
+			if (entry.getUsername().equals(user) && entry.getPassword().equals(password)) {
+				level = entry.getPermission();
+				return true;
+			}
 		}
+		
 		JOptionPane.showMessageDialog(this, "Username and password do not belong to an existing account");
 		return false;
 	}
@@ -92,8 +97,9 @@ public class LoginPage extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(signIn)) {
-			User user = new User(userField.getText(), passField.getText());
-			if (validateLogin(user)) {
+			if (validateLogin(userField.getText(), passField.getText())) {
+				Suite.setUsername(userField.getText());
+				Suite.setPLevel(level);
 				this.setVisible(false);
 				JOptionPane.showMessageDialog(this, "Login successful");
 			}

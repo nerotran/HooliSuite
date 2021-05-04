@@ -9,8 +9,7 @@ class LoginPageTest {
 		LoginPage l = new LoginPage();
 		String user = "marti730";
 		String pass = "password12";
-		User u = new User(user, pass);
-		assertFalse(l.validateLogin(u));
+		assertFalse(l.validateLogin(user, pass));
 	}
 
 }

@@ -10,6 +10,12 @@ public class User {
 		permission = 1;
 	}
 	
+	public User(String username, String password, int permission) {
+		this.username = username;
+		this.password = password;
+		this.permission = permission;
+	}
+	
 	public String getUsername() {
 		return username;
 	}

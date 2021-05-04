@@ -37,7 +37,7 @@ public class CreateAccountPage extends JFrame implements ActionListener {
 		File file = new File(fileName);
 		try {
 			PrintWriter output = new PrintWriter(file);
-			output.append("Username, Password, Permission \n");
+			output.append("Username, Password, Permission, \n");
 			
 			for (User entry : info) {
 				output.append(entry.getUsername() + "," + entry.getPassword() + "," + convertPermission(entry.getPermission()) + ",\n");
