@@ -80,7 +80,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	*/
 	public boolean validateLogin(String user, String password) {
 		for (User entry : userInfo) {
-			if (entry.getUsername().equals(user) && entry.getPassword().equals(password)) {
+			if (entry.getUsername().equals(user.toLowerCase()) && entry.getPassword().equals(password)) {
 				level = entry.getPermission();
 				return true;
 			}
