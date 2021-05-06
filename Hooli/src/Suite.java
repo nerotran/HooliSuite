@@ -247,9 +247,6 @@ public class Suite implements ActionListener,MouseListener {
 				userData = userData + input.next();
 			}
 			
-			// for testing purposes
-			System.out.println(userData);
-			
 			String[] userArray = userData.split(",");
 			for (int i = 0; i+2 < userArray.length; i+=3) {
 				User user = new User(userArray[i], userArray[i+1]);
