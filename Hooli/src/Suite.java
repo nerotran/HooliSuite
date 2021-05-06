@@ -75,7 +75,7 @@ public class Suite implements ActionListener,MouseListener {
 	//username
 	public static String username = "Anonymous";
 	//Permission level
-	public static int pLevel = 0;
+	public static int pLevel = 3;
 
 	public static void main(String[] args) {
 		File file = new File("comments");
@@ -219,6 +219,8 @@ public class Suite implements ActionListener,MouseListener {
 		
 		entryAccept = new JButton("Accept");
 		entryDeny = new JButton("Deny");
+		entryAccept.addActionListener(this);
+		entryDeny.addActionListener(this);
 		
 		entryScroll = new JScrollPane(entryView);
 		entryPanel.add(entryScroll);
@@ -398,6 +400,7 @@ public class Suite implements ActionListener,MouseListener {
 		if (e.getSource().equals(entryAccept)) {
 			Application selectedItem = (Application) entryView.getSelectedValue();
 			list.add(selectedItem);
+			entries.remove(entryView.getSelectedIndex());
 			AddEntry.writeToFile("ApplicationData.txt", list);
 			AddEntry.removeRequest(selectedItem);
 			frame.repaint();
@@ -405,6 +408,7 @@ public class Suite implements ActionListener,MouseListener {
 		if (e.getSource().equals(entryDeny)) {
 			Application selectedItem = (Application) entryView.getSelectedValue();
 			AddEntry.removeRequest(selectedItem);
+			entries.remove(entryView.getSelectedIndex());
 			frame.repaint();
 		}
 
