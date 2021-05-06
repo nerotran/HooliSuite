@@ -227,10 +227,10 @@ public class Suite implements ActionListener,MouseListener {
 	}
 	
 	/**
-	 * Reads user data from a file and puts it into a map so that usernames and
-	 * passwords can be validated when logging in.
+	 * Reads User data from a file and puts it into a Set so that usernames,
+	 * passwords, and permission levels can be validated when logging in.
 	 * @param fileName the name of the file that holds user data as a string
-	 * @return a map of the user data with username as the key and password as the value
+	 * @return a Set that stores User objects and their associated data 
 	 */
 	public static Set<User> pullUserInfo(String fileName) {
 		File file = new File(fileName);
@@ -264,6 +264,14 @@ public class Suite implements ActionListener,MouseListener {
 		return data;
 	}
 	
+	/**
+	 * Takes in a string representation of the user's permission level
+	 * and converts it to an int. Returns 1 if permission is "user", 
+	 * 2 if permission is "mod", and 3 if permission is "admin". 
+	 * Otherwise returns 1 (basic user permissions).
+	 * @param level the user's permission level as a string
+	 * @return permission level as an int
+	 */
 	public static int convertLevel(String level) {
 		if (level.equals("user")) {
 			pLevel = 1;
@@ -282,22 +290,44 @@ public class Suite implements ActionListener,MouseListener {
 		return pLevel;
 	}
 	
+	/**
+	 * Updates the permission level
+	 * @param level the value to change pLevel to
+	 */
 	public static void setPLevel(int level) {
 		pLevel = level;
 	}
 	
+	/**
+	 * Returns the value of pLevel.
+	 * @return pLevel as an int
+	 */
 	public static int getPLevel() {
 		return pLevel;
 	}
 	
+	/**
+	 * Updates the value of the username string
+	 * @param name the value to change the username string to
+	 */
 	public static void setUsername(String name) {
 		username = name;
 	}
 	
+	/**
+	 * Returns the value of username
+	 * @return username as a String
+	 */
 	public static String getUsername() {
 		return username;
 	}
 	
+	/** 
+	 * Changes Suite's look and permissions after user logs in. 
+	 * Updates the username and permission level displayed at the 
+	 * top of the Suite window and enables the Entries tab if 
+	 * user's permission is at least 3 (admin).
+	 */
 	public static void updateUser() {
 		switch (pLevel) {
 		case 0:
