@@ -42,7 +42,7 @@ public class AddEntry extends JFrame implements ActionListener {
 	private JTextField descInfo;
 	private JTextField linkInfo;
 	private JButton addBut;
-	Set<Application> requests;
+	ArrayList<Application> requests;
 
 	/**
 	 * Default constructor
@@ -107,23 +107,60 @@ public class AddEntry extends JFrame implements ActionListener {
 	 * @param fileName the name of the file to write to as a String
 	 * @param data     the Set to pull data from
 	 */
-	public void writeToFile(String fileName, Set<Application> data) {
+	public static void writeToFile(String fileName, ArrayList<Application> data) {
 		File file = new File(fileName);
+		if (fileName == "Request.csv") {
+			try {
+				PrintWriter output = new PrintWriter(file);
+				output.append("Name, Publisher, Platform, Description, Price, Link, Release, \n");
+	
+				for (Application app : data) {
+					output.append(
+							app.getName() + "," + app.getPublisher() + "," + app.getPlatform() + "," + app.getDescription()
+									+ "," + app.getPrice() + "," + app.getLink() + "," + app.getDate() + ",\n");
+				}
+	
+				output.close();
+			} catch (FileNotFoundException ex) {
+				System.out.println("File not found");
+			}
+		} else if (fileName == "ApplicationData.txt") {
+			try {
+				PrintWriter output = new PrintWriter(file);
+	
+				for (Application app : data) {
+					output.append(
+							app.getName() + "~" + app.getPublisher() + "~" + app.getPlatform() + "~" + app.getDescription()
+									+ "~" + app.getPrice() + "~" + app.getLink() + "~" + app.getDate() + "\n");
+				}
+	
+				output.close();
+			} catch (FileNotFoundException ex) {
+				System.out.println("File not found");
+			}
+		}
+
+	}
+	
+	public static void removeRequest(Application removed) {
+		ArrayList<Application> list = pullRequestInfo("Request.csv");
+		File file = new File("Request.csv");
 		try {
 			PrintWriter output = new PrintWriter(file);
 			output.append("Name, Publisher, Platform, Description, Price, Link, Release, \n");
 
-			for (Application app : data) {
-				output.append(
-						app.getName() + "," + app.getPublisher() + "," + app.getPlatform() + "," + app.getDescription()
-								+ "," + app.getPrice() + "," + app.getLink() + "," + app.getDate() + ",\n");
+			for (Application app : list) {
+				if (app != removed) {
+					output.append(
+							app.getName() + "," + app.getPublisher() + "," + app.getPlatform() + "," + app.getDescription()
+									+ "," + app.getPrice() + "," + app.getLink() + "," + app.getDate() + ",\n");
+				}
 			}
 
 			output.close();
 		} catch (FileNotFoundException ex) {
 			System.out.println("File not found");
 		}
-
 	}
 
 	/**
@@ -133,10 +170,10 @@ public class AddEntry extends JFrame implements ActionListener {
 	 * @param fileName the name of the file to read data from as a String
 	 * @return a Set that stores Application objects and their associated data
 	 */
-	public static Set<Application> pullRequestInfo(String fileName) {
+	public static ArrayList<Application> pullRequestInfo(String fileName) {
 		File file = new File(fileName);
 		String appData = "";
-		Set<Application> requests = new HashSet<>();
+		ArrayList<Application> requests = new ArrayList<Application>();
 		try {
 			Scanner input = new Scanner(file);
 			if (input.hasNextLine()) {
