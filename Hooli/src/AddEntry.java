@@ -127,7 +127,6 @@ public class AddEntry extends JFrame implements ActionListener {
 		} else if (fileName == "ApplicationData.txt") {
 			try {
 				PrintWriter output = new PrintWriter(file);
-	
 				for (Application app : data) {
 					output.append(
 							app.getName() + "~" + app.getPublisher() + "~" + app.getPlatform() + "~" + app.getDescription()
@@ -148,9 +147,11 @@ public class AddEntry extends JFrame implements ActionListener {
 		try {
 			PrintWriter output = new PrintWriter(file);
 			output.append("Name, Publisher, Platform, Description, Price, Link, Release, \n");
-
+			System.out.print(removed.toString());
 			for (Application app : list) {
-				if (app != removed) {
+				String temp = app.getName();
+				String othTemp = removed.getName();
+				if (!temp.equals(othTemp)) {
 					output.append(
 							app.getName() + "," + app.getPublisher() + "," + app.getPlatform() + "," + app.getDescription()
 									+ "," + app.getPrice() + "," + app.getLink() + "," + app.getDate() + ",\n");
