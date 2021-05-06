@@ -91,7 +91,7 @@ public class Suite implements ActionListener,MouseListener {
 		list.sort(Comparator.comparing(Application::getName));
 		
 		//Read entries requested from a text file
-		entries = FileReader.readAppFile("Request.txt");
+		entries = AddEntry.pullRequestInfo("Request.csv");
 		list.sort(Comparator.comparing(Application::getName));
 		
 		makeFrame();
@@ -394,6 +394,19 @@ public class Suite implements ActionListener,MouseListener {
 			list = originalList;
 			
 		}
+		
+		if (e.getSource().equals(entryAccept)) {
+			Application selectedItem = (Application) entryView.getSelectedValue();
+			list.add(selectedItem);
+			AddEntry.writeToFile("ApplicationData.txt", list);
+			AddEntry.removeRequest(selectedItem);
+			frame.repaint();
+		}
+		if (e.getSource().equals(entryDeny)) {
+			Application selectedItem = (Application) entryView.getSelectedValue();
+			AddEntry.removeRequest(selectedItem);
+			frame.repaint();
+		}
 
 		if (e.getSource().equals(helpItem)) {
 			new HelpPage();
@@ -406,17 +419,25 @@ public class Suite implements ActionListener,MouseListener {
 	}
 
 	/**
-	 * Need to click an application in the list twice
+	 * Need to click an application multiple times 
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// Need to click twice for first page
 		if (e.getClickCount() == 2) {
 			Application selectedItem = (Application) listView.getSelectedValue();
 		    ApplicationPage appPage = new ApplicationPage(selectedItem);
 		    appPage.setVisible(true);
 		    
 		}
+		// Need to click thrice for second page
+		if (e.getClickCount() == 3) {
+			Application selectedItem = (Application) entryView.getSelectedValue();
+		    ApplicationPage appPage = new ApplicationPage(selectedItem);
+		    appPage.setVisible(true);
+		    
+		}
+		
        
 	}
 
