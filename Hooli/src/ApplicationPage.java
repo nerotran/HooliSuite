@@ -24,6 +24,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
+/**
+ * @author Nero
+ * Individual page for reach application
+ */
 public class ApplicationPage extends JFrame implements ActionListener, WindowListener {
 	private Application app;
 	private JLabel name, publisher, platform, price, date, descLabel;
@@ -36,6 +40,9 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 	private JTextArea commentBox, description;
 	private JPanel commentTab;
 	
+	/**
+	 * @param app The application 
+	 */
 	public ApplicationPage(Application app) {
 		super();
 		this.app = app;
@@ -48,6 +55,9 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		graphics();
 	}
 	
+	/**
+	 * Generate JComponents
+	 */
 	private void graphics() {
 		info = new JPanel();
 		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
@@ -112,6 +122,11 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 
 	}
 	
+	/**
+	 * Open a webpage from the computer's default browser.
+	 * @param uri webpage's URL
+	 * @return boolean true if successful, false otherwise
+	 */
 	public static boolean openWebpage(URI uri) {
 	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {

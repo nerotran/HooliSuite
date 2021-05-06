@@ -73,8 +73,8 @@ public class ApplicationList<T> implements ListModel<T> {
 	}
 	
 	/**
-	 * Adds a value to the arraylist
-	 * @param arg0 the value to add to the arraylist
+	 * Remove a value to the arraylist
+	 * @param arg0 the value to be removed from the arraylist
 	 */
 	public void remove(T arg0) {
 		// TODO Auto-generated method stub

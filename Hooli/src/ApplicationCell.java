@@ -7,12 +7,17 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
+/**
+ * @author Nero
+ * Format for each application on the list
+ */
 public class ApplicationCell extends JPanel implements ListCellRenderer<Application> {
 	Color background;
 	Color foreground;
 	private JLabel name, publisher, price, platform;
 	
 	public ApplicationCell() {
+		//GridLayout: ||Name||Publisher||Price||Platform
 		this.setLayout(new GridLayout(1,4));
 		name = new JLabel();
 		publisher = new JLabel();
@@ -26,9 +31,9 @@ public class ApplicationCell extends JPanel implements ListCellRenderer<Applicat
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Application> list, Application value, int index,
-			boolean isSelected, boolean cellHasFocus) {
-	
+			boolean isSelected, boolean cellHasFocus) {	
 		// TODO Auto-generated method stub
+		
 		name.setText(value.getName());
 		publisher.setText(value.getPublisher());
 		price.setText("$" + value.getPrice());
@@ -68,8 +73,6 @@ public class ApplicationCell extends JPanel implements ListCellRenderer<Applicat
         platform.setForeground(foreground);
         platform.setFont(platform.getFont().deriveFont(15.0f));
         
-        
-
         return this;
 	}
 
