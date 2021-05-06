@@ -38,18 +38,29 @@ public class ApplicationList<T> implements ListModel<T> {
 
 	}
 
+	/**
+	 * Returns the element at the specified index in the arraylist
+	 * @param arg0 the index in the arraylist 
+	 */
 	@Override
 	public T getElementAt(int arg0) {
 		// TODO Auto-generated method stub
 		return appList.get(arg0);
 	}
 
+	/**
+	 * Returns the size of the arraylist
+	 */
 	@Override
 	public int getSize() {
 		// TODO Auto-generated method stub
 		return appList.size();
 	}
 
+	/**
+	 * Adds a value to the arraylist
+	 * @param arg0 the value to add to the arraylist
+	 */
 	public void add(T arg0) {
 		// TODO Auto-generated method stub
 		appList.add(arg0);
