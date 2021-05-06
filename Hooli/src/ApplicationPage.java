@@ -146,7 +146,7 @@ public class ApplicationPage extends JFrame implements ActionListener, WindowLis
 		
 		if (event.getActionCommand().equals("Post")) {
 			Comment temp = new Comment(Suite.username, commentBox.getText());
-			app.getComments().add(temp);
+			cList.add(temp);
 			this.repaint();
 			commentBox.setText("");
 			comments.repaint();

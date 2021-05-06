@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import javax.swing.ListModel;
+import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.event.ListDataListener;
  */
 public class ApplicationList<T> implements ListModel<T> {
 	ArrayList<T> appList;
+	private ArrayList<ListDataListener> listeners = new ArrayList<ListDataListener>();
 
 	/**
 	 * Default constructor
@@ -35,7 +37,7 @@ public class ApplicationList<T> implements ListModel<T> {
 	@Override
 	public void addListDataListener(ListDataListener arg0) {
 		// TODO Auto-generated method stub
-
+		listeners.add(arg0);
 	}
 
 	/**
@@ -64,11 +66,30 @@ public class ApplicationList<T> implements ListModel<T> {
 	public void add(T arg0) {
 		// TODO Auto-generated method stub
 		appList.add(arg0);
+		ListDataEvent addition = new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, appList.size() - 1, appList.size() - 1);
+        for (ListDataListener l : listeners) {
+            l.intervalAdded(addition);
+        }
 	}
+	
+	/**
+	 * Adds a value to the arraylist
+	 * @param arg0 the value to add to the arraylist
+	 */
+	public void remove(T arg0) {
+		// TODO Auto-generated method stub
+		appList.remove(arg0);
+        ListDataEvent removal = new ListDataEvent(this, ListDataEvent.INTERVAL_REMOVED, appList.size(), appList.size());
+        for (ListDataListener l : listeners) {
+            l.intervalRemoved(removal);
+        }
+	}
+	
 
 	@Override
 	public void removeListDataListener(ListDataListener arg0) {
 		// TODO Auto-generated method stub
+		listeners.remove(arg0);
 
 	}
 

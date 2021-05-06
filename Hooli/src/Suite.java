@@ -75,7 +75,7 @@ public class Suite implements ActionListener,MouseListener {
 	//username
 	public static String username = "Anonymous";
 	//Permission level
-	public static int pLevel = 3;
+	public static int pLevel = 0;
 
 	public static void main(String[] args) {
 		File file = new File("comments");
@@ -399,7 +399,7 @@ public class Suite implements ActionListener,MouseListener {
 		
 		if (e.getSource().equals(entryAccept)) {
 			Application selectedItem = (Application) entryView.getSelectedValue();
-			list.add(selectedItem);
+			appList.add(selectedItem);
 			entries.remove(entryView.getSelectedIndex());
 			AddEntry.writeToFile("ApplicationData.txt", list);
 			AddEntry.removeRequest(selectedItem);
