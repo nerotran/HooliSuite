@@ -141,13 +141,16 @@ public class AddEntry extends JFrame implements ActionListener {
 
 	}
 	
+	/**
+	 * Removes the designated application from the list of requests
+	 * @param removed the application to be removed
+	 */
 	public static void removeRequest(Application removed) {
 		ArrayList<Application> list = pullRequestInfo("Request.csv");
 		File file = new File("Request.csv");
 		try {
 			PrintWriter output = new PrintWriter(file);
 			output.append("Name, Publisher, Platform, Description, Price, Link, Release, \n");
-			System.out.print(removed.toString());
 			for (Application app : list) {
 				String temp = app.getName();
 				String othTemp = removed.getName();
