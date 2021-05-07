@@ -7,13 +7,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * Creates the AboutPage that gives the user information about the program
+ * 
+ * @author Joe
+ */
 public class AboutPage extends JFrame {
-	
+
 	private JPanel panel;
 	private JTextArea area;
+
+	/**
+	 * Default constructor
+	 */
 	public AboutPage() {
-		
-		
 		super("About Hooli Suite");
 		this.setBounds(250, 200, 400, 300);
 		this.setResizable(true);
@@ -21,7 +28,10 @@ public class AboutPage extends JFrame {
 		this.setVisible(true);
 		makePanel();
 	}
-	
+
+	/**
+	 * Displays text from a file on the About page
+	 */
 	public void showText() {
 		File file = new File("about.txt");
 		Scanner scan = null;
@@ -36,7 +46,10 @@ public class AboutPage extends JFrame {
 		}
 		scan.close();
 	}
-	
+
+	/**
+	 * Adds components to the JFrame
+	 */
 	public void makePanel() {
 		panel = new JPanel();
 		area = new JTextArea(30, 30);

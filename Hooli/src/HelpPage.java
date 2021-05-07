@@ -6,10 +6,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class HelpPage extends JFrame{
+/**
+ * Creates the HelpPage that gives users information about how to use the
+ * program
+ * 
+ * @author Joe
+ */
+public class HelpPage extends JFrame {
 	private JPanel panel;
 	private JTextArea area;
-	
+
+	/**
+	 * Default constructor
+	 */
 	public HelpPage() {
 		super("Help Page");
 		this.setBounds(100, 100, 600, 400);
@@ -18,7 +27,10 @@ public class HelpPage extends JFrame{
 		this.setVisible(true);
 		makePanel();
 	}
-	
+
+	/**
+	 * Displays text from a file on the Help page
+	 */
 	public void showText() {
 		File file = new File("help.txt");
 		Scanner scan = null;
@@ -33,7 +45,10 @@ public class HelpPage extends JFrame{
 		}
 		scan.close();
 	}
-	
+
+	/**
+	 * Adds components to the JFrame
+	 */
 	public void makePanel() {
 		panel = new JPanel();
 		area = new JTextArea(30, 30);
