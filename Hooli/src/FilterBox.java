@@ -25,8 +25,8 @@ public class FilterBox extends JComboBox implements ActionListener {
 	
 	/**
 	 * Filter 
-	 * @param list
-	 * @param s
+	 * @param list the list of applications to filter
+	 * @param s the Suite page to display on
 	 */
 	public FilterBox(ArrayList<Application> list, Suite s) {
 		this.s = s;

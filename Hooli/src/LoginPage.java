@@ -74,11 +74,12 @@ public class LoginPage extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Validates a user's login information
+	 * Validates a user's login information by checking if the 
+	 * username and password match a User in the userInfo Set
 	 * 
 	 * @param user string for a username
-	 * @param pass string for a password
-	 * @return boolean
+	 * @param password string for a password
+	 * @return boolean true if Login info is valid, false otherwise
 	 */
 	public boolean validateLogin(String user, String password) {
 		for (User entry : userInfo) {

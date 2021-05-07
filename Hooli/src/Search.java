@@ -25,7 +25,7 @@ public class Search {
 	/**
 	 * Checks to see if user's searched word is found, adds it to a new array list
 	 * @param s the string the user wants to search for.
-	 * @param appList
+	 * @param appList the list of applications to search through
 	 */
 	public void check(String s, ArrayList<Application> appList) {
 		int count = 0;

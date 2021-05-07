@@ -2,16 +2,25 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class to read the application info from a file and display it on main Suite
+ * page
+ * 
+ * @author Scott
+ */
 public class FileReader extends Reader {
 
 	/**
 	 * Unimplemented constructor
+	 * 
+	 * @param File the file to use
 	 */
 	public FileReader(File file) {
 	}
-	
+
 	/**
 	 * Reads from a file and turns the lines into application objects
+	 * 
 	 * @param inputFile The file to read
 	 * @return an array list of application objects read from the file
 	 */
@@ -20,7 +29,7 @@ public class FileReader extends Reader {
 		try {
 			File file = new File(inputFile);
 			Scanner scanner = new Scanner(file);
-			
+
 			while (scanner.hasNext()) {
 				String tempStr = scanner.nextLine();
 				String name = tempStr.substring(0, tempStr.indexOf("~"));
@@ -40,15 +49,15 @@ public class FileReader extends Reader {
 				Application temp = new Application(name, publisher, platform, desc, price, link, release);
 				arrlist.add(temp);
 			}
-			
+
 			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	
+
 		return arrlist;
 	}
-	
+
 	/**
 	 * Unimplemented override method
 	 */
@@ -63,5 +72,5 @@ public class FileReader extends Reader {
 	public int read(char[] arg0, int arg1, int arg2) throws IOException {
 		return 0;
 	}
-	
+
 }
